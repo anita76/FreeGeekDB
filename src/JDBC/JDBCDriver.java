@@ -15,12 +15,13 @@ public class JDBCDriver {
     private JDBCDriver() {
         String username = "";//set to your oracle username (ora_a1b7c)
         String password = "";//set to your oracle password (a11131353)
+        /*
         try {
             // Load the Oracle JDBC driver
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         }catch (SQLException ex) {
             System.out.println("\nMessage: " + ex.getMessage());
-        }
+        }*/
 
         try {
             // Connect to database
