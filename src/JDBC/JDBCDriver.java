@@ -12,26 +12,28 @@ public class JDBCDriver {
     }
 
     // connect to database
+
     private JDBCDriver() {
         String username = "";//set to your oracle username (ora_a1b7c)
         String password = "";//set to your oracle password (a11131353)
-        /*
+
         try {
             // Load the Oracle JDBC driver
             DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
         }catch (SQLException ex) {
             System.out.println("\nMessage: " + ex.getMessage());
-        }*/
+        }
 
         try {
             // Connect to database
-            con = DriverManager.getConnection("jdbc:oracle:thin:@dbhost.ugrad.cs.ubc.ca:1522:ug",username,password);
+            con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:49359:ug",username,password);
             stmt = con.createStatement();
             System.out.println("\nConnected to Oracle!");
         }catch(SQLException ex){
             System.out.println("\nMessage: " + ex.getMessage());
             System.out.println("\nFailed to connect to Oracle!");
         }
+
     }
 
     // This is to disconnect from the database

@@ -55,7 +55,7 @@ public class LoginWindow extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputIDValue = userIDField.getText();
-                JDBCDriver jdbcDriver = JDBCDriver.getInstance();
+                //JDBCDriver jdbcDriver = JDBCDriver.getInstance();
                 try{
                     Integer.parseInt(inputIDValue);
 
