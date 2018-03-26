@@ -3,7 +3,7 @@ create table users (
     firstName char(30) not null,
     lastName char(30) not null,
     email char(50) unique,
-    phone# number(10) null,
-    membershipStartData date null,
+    phone# number(10),
+    membershipStartData date,
     primary key (id)
 );

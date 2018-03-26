@@ -1,5 +1,6 @@
 package GUI;
 
+import JDBC.GuestUser;
 import definitions.ConstantValues;
 
 import javax.swing.*;
@@ -8,7 +9,8 @@ import java.awt.*;
 public class FreeGeekApp {
 
     private JFrame windowFrame = new JFrame("FreeGeekManagementSystem");
-    public LoginWindow loginWindow = new LoginWindow();
+    public static LoginWindow loginWindow = new LoginWindow();
+    public static GuestUser currentUser = null;
 
     public FreeGeekApp(){
         windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
