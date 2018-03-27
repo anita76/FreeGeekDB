@@ -1,12 +1,14 @@
 package GUI;
 import JDBC.GuestUser;
 import JDBC.JDBCDriver;
+import com.sun.xml.internal.bind.v2.TODO;
 import definitions.ConstantValues;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class LoginWindow extends JPanel{
 
@@ -129,7 +131,15 @@ public class LoginWindow extends JPanel{
                 String inputIDValue = userIDField.getText();
                 JDBCDriver jdbcDriver = JDBCDriver.getInstance();
                 try{
-                    Integer.parseInt(inputIDValue);
+                    int id = Integer.parseInt(inputIDValue);
+                    GuestUser gu = new GuestUser(id);
+                    //Todo: once volunteer and empolyee are done you have to add the correct user here
+                    FreeGeekApp.currentUser=gu;
+                    MainWindow main = new MainWindow();
+                    FreeGeekApp.mainWindow = main;
+                    FreeGeekApp.windowFrame.add(main);
+                    setVisible(false);
+                    setEnabled(false);
 
                 }catch(NumberFormatException ex){
                     JOptionPane.showMessageDialog(null,"Please Enter a Number","Error!", JOptionPane.ERROR_MESSAGE);
