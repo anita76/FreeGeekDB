@@ -91,11 +91,11 @@ values('00030', 'Lupita', 'Moffat',
 insert into users
 values ('00031','Carl', 'Denis', 'carl.denis@hotmail.com', '6049601404', '2015-6-12');
 insert into users
-values('00032','Allen', 'White', 'aw1990@ymail.com', '7783117657', '2015-6-1')
+values('00032','Allen', 'White', 'aw1990@ymail.com', '7783117657', '2015-6-1');
 insert into users
 values('00033', 'Jessica', 'Pam', 'jessie88@gmail.com', '60477712879', '2015-1-1');
 insert into users
-values('00034', 'Linda', 'Lee', 'linda.lee@gmail.com', '6047649283', '2015-1-9);
+values('00034', 'Linda', 'Lee', 'linda.lee@gmail.com', '6047649283', '2015-1-9');
 insert into users
 values('00035','George', 'Kaiser', 'gkaiser23@outlook.com', '7789872323', '2015-1-19');
 insert into users
@@ -138,7 +138,7 @@ insert into users
 values('00053', 'Isabel', 'Patton',
 'Isabelpatton@hotmail.com', '7786808883', '2014-3-20');
 insert into users
-values('00054', Leslie', 'Fox',
+values('00054', 'Leslie', 'Fox',
 'lesliefox@hotmail.com', '7786808884', '2014-3-21');
 insert into users
 values('00055', 'Terry', 'Carter',
@@ -201,7 +201,7 @@ insert into users
 values('00074', 'Christy', 'Frank',
 'christyfrank74@gmail.com', '7786808904', '2017-4-2');
 insert into users
-values('00075', 'Douglas', ‘Johnson',
+values('00075', 'Douglas', 'Johnson',
 'douglasjohnsonr@gmail.com', '7786808905', '2018-3-2');
 insert into users
 values('00076', 'Debbie', 'Rhodes',
@@ -221,11 +221,11 @@ values('00080', 'Marguerite', 'Flowers',
 insert into users
 values ('00081','Thomas', 'Paul', 'thomaspaul@hotmail.com', '6049801404', '2015-6-12');
 insert into users
-values('00082','Ronnie', 'Mitchell', 'ronniemitchell@ymail.com', '7783118657', '2015-6-1')
+values('00082','Ronnie', 'Mitchell', 'ronniemitchell@ymail.com', '7783118657', '2015-6-1');
 insert into users
 values('00083', 'Mattie', 'Sutton', 'jmattie88@gmail.com', '60477812879', '2015-1-1');
 insert into users
-values('00084', 'Roman', 'Wagner', 'romanwagner@gmail.com', '6048649283', '2015-1-9);
+values('00084', 'Roman', 'Wagner', 'romanwagner@gmail.com', '6048649283', '2015-1-9');
 insert into users
 values('00085','Eva', 'Cross', 'evacross23@outlook.com', '7789882323', '2015-1-19');
 insert into users
@@ -249,7 +249,7 @@ values('00094', 'Marsha', 'Rice', 'marsharicez@gmail.com', '6042384896', '2017-3
 insert into users
 values('00095', 'Cathy', 'Holland', 'cathyholland4@gmail.com', '6045767885', '2016-12-30');
 insert into users
-values('00096', 'Neal, 'Boyd', 'nealboyds@hotmail.com', '7783768668', '2017-8-13');
+values('00096', 'Neal', 'Boyd', 'nealboyds@hotmail.com', '7783768668', '2017-8-13');
 insert into users
 values('00097', 'Connie', 'Carpenter', 'conniecarpenter44@gmail.com', '7784769820', '2017-5-2');
 insert into users
