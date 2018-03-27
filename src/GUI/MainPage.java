@@ -5,10 +5,14 @@ import definitions.ConstantValues;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainPage extends JPanel{
-    private JButton loginBtn = new JButton("Log In");
-    private JButton signupBtn = new JButton("Create Account");
+    private JButton save = new JButton("Save");
+    private JButton cancel = new JButton("Cancel");
+    private JButton logout = new JButton("Log Out");
+    private JButton deleteAcnt = new JButton("Delete Account");
 
     private JLabel userIDLabel = new JLabel("User ID:");
     private JLabel firstNameLabel = new JLabel("First Name:");
@@ -29,11 +33,8 @@ public class MainPage extends JPanel{
         setVisible(true);
 
         GuestUser cur = FreeGeekApp.currentUser;
-        firstNameField.setText(cur.getFirstName().trim());
-        lastNameField.setText(cur.getLastName().trim());
-        emailField.setText(cur.getEmail().trim());
-        phoneNumField.setText(Long.toString(cur.getPhoneNum()));
         userIDField = new JLabel(Integer.toString(cur.getId()));
+        setFieldValues();
 
         setLabels(firstNameLabel,0,1);
         setLabels(lastNameLabel,0,2);
@@ -45,10 +46,24 @@ public class MainPage extends JPanel{
         setFields(lastNameField,1,2);
         setFields(emailField,1,3);
         setFields(phoneNumField,1,4);
+        setBtn(save,1,5);
+        setBtn(cancel,0,5);
+        setBtn(logout,0,6);
+        setBtn(deleteAcnt,1,6);
+        handleCancel();
+        handleSave();
+        handleLogout();
+        handleDeleteAccount();
 
 
+    }
 
-
+    private void setFieldValues(){
+        GuestUser cur = FreeGeekApp.currentUser;
+        firstNameField.setText(cur.getFirstName().trim());
+        lastNameField.setText(cur.getLastName().trim());
+        emailField.setText(cur.getEmail().trim());
+        phoneNumField.setText(Long.toString(cur.getPhoneNum()));
     }
 
     private void setLabels(JLabel label, int x, int y){
@@ -89,5 +104,58 @@ public class MainPage extends JPanel{
         c.fill = GridBagConstraints.NONE;
         c.insets = new Insets(20,10,20,100);
         add(field, c);
+    }
+
+    private void setBtn(JButton btn, int x, int y){
+        btn.setFont(new Font("Serif", Font.PLAIN, 20));
+        Dimension d = new Dimension(200,30);
+        btn.setPreferredSize(d);
+        c.gridx = x;
+        c.gridy = y;
+        c.fill = GridBagConstraints.NONE;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.anchor = GridBagConstraints.EAST;
+        new Insets(20,10,20,10);
+        add(btn,c);
+    }
+
+    private void handleCancel(){
+        cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setFieldValues();
+            }
+        });
+    }
+
+    private void handleSave(){
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO
+            }
+        });
+    }
+
+    private void handleLogout(){
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                FreeGeekApp.loginWindow.setVisible(true);
+                FreeGeekApp.loginWindow.setEnabled(true);
+                FreeGeekApp.loggedInWindow.setVisible(false);
+                FreeGeekApp.loggedInWindow.setEnabled(false);
+            }
+        });
+    }
+
+    private void handleDeleteAccount(){
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TODO
+            }
+        });
     }
 }
