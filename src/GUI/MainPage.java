@@ -6,7 +6,7 @@ import definitions.ConstantValues;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainWindow extends JPanel{
+public class MainPage extends JPanel{
     private JButton loginBtn = new JButton("Log In");
     private JButton signupBtn = new JButton("Create Account");
 
@@ -22,7 +22,7 @@ public class MainWindow extends JPanel{
     private JTextField emailField = new JTextField(25);
     private JTextField phoneNumField = new JTextField(25);
 
-    public MainWindow(){
+    public MainPage(){
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
         setBackground(new Color(199,210,208));
         setLayout(new GridBagLayout());

@@ -12,6 +12,7 @@ public class GuestUser {
     public long phoneNum;
     public String memStartDate;
     private JDBCDriver jdbcDriver = JDBCDriver.getInstance();
+    private boolean created= false;
 
     public GuestUser(int ID){
         id = ID;
@@ -28,7 +29,7 @@ public class GuestUser {
             e.printStackTrace();
             System.exit(-1);
         }
-        while(next){
+        if(next){
             try {
                 id = result.getInt("id");
                 firstName = result.getString("firstName");
@@ -39,7 +40,7 @@ public class GuestUser {
                     phoneNum=-1;
                 }
                 memStartDate = result.getString("membershipStartData");
-                next = result.next();
+                created=true;
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.exit(-1);
@@ -65,5 +66,9 @@ public class GuestUser {
     }
     public String getMemStartDate() {
         return memStartDate;
+    }
+
+    public boolean isCreated(){
+        return created;
     }
 }
