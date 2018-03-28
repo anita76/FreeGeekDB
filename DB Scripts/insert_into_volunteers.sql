@@ -19,14 +19,6 @@ values('00034', '2015-1-19', '25', '2015-01-20', '10:30:00');
 insert into volunteers
 values('00035', '2015-1-19', '20', '2015-01-20', '10:30:00');
 insert into volunteers
-values('00036', '2014-2-16', '30', '2014-02-25', '11:30:00');
-insert into volunteers
-values('00037', '2014-2-2', '0', '2014-02-25', '11:30:00');
-insert into volunteers
-values('00038', '2014-9-1', '10', '2014-09-09', '10:30:00');
-insert into volunteers
-values('00039', '2014-9-5', '0', '2014-09-09', '10:30:00');
-insert into volunteers
 values('00040', '2016-7-7', '20', '2016-08-01', '11:30:00');
 insert into volunteers
 values('00041', '2016-7-15', '30', '2016-08-01', '11:30:00');
@@ -46,5 +38,4 @@ insert into volunteers
 values('00048', '2017-7-9', '35', '2017-07-20', '11:30:00');
 insert into volunteers
 values('00049', '2017-7-1', '0', '2017-07-20', '11:30:00');
-insert into volunteers
-values('00050', '2014-11-1', '10', '2014-11-10', '10:30:00');
+
