@@ -4,6 +4,6 @@ create table users (
     lastName char(30) not null,
     email char(50) unique,
     phone char(20),
-    membershipStartData date,
+    membershipStartData char(20),
     primary key (id)
 );

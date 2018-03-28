@@ -1,9 +1,9 @@
 create table volunteers(
     id int not null,
-    orientSignUpDate date,
+    orientSignUpDate char(20),
     points Number(5),
-    orientDate date,
-    orientTime date,
+    orientDate char(20),
+    orientTime char(20),
     primary key(id),
     foreign key(id) references users(id)
                         on delete cascade,

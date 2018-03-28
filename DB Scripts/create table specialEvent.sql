@@ -1,9 +1,9 @@
 create table specialEvent(
-	eventDATE date,
+	eventDATE char(20),
 	name char(30), 
 	entranceFee  integer, 
-	startTIME date, 
-	endTIME date,
+	startTIME char(20), 
+	endTIME char(20),
 	capacity integer,
 	PRIMARY KEY (eventDATE, startTIME)
 );
