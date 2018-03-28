@@ -63,11 +63,18 @@ public class GuestUser {
             return error;
         }
         String query = sb.toString();
-        int outcome = jdbcDriver.executeDataUpdate(query);
-        if(outcome>0){
+        String outcome = jdbcDriver.executeDataUpdate(query);
+        if(outcome.indexOf("value too large")>=0){
+            return "input exceeds maximum size";
+        }else if(outcome.indexOf("MAILCHCK")>=0) {
+            return "invalid email address";
+        }else if(outcome.indexOf("unique constraint")>=0){
+            return "email address used with another account";
+        }
+        else if(outcome.indexOf("success")>=0) {
             return "success";
         }else{
-            return "failed to add";
+            return "failed to add input";
         }
     }
 

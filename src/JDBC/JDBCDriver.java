@@ -16,7 +16,7 @@ public class JDBCDriver {
     private JDBCDriver() {
         String username = "ora_o2t0b";//set to your oracle username (ora_a1b7c)
         String password = "a23586150";//set to your oracle password (a11131353)
-        String url = "jdbc:oracle:thin:@localhost:55810:ug";
+        String url = "jdbc:oracle:thin:@localhost:56590:ug";
 
         try {
             // Load the Oracle JDBC driver
@@ -52,14 +52,15 @@ public class JDBCDriver {
     }
 
     // This is to execute any data manipulation or definition (e.g. update, drop, insert...)
-    public int executeDataUpdate(String sqlStatement){
-        int outcome=-1;
+    public String executeDataUpdate(String sqlStatement){
+        String outcome="success";
         try{
-            outcome = stmt.executeUpdate(sqlStatement);
+            stmt.executeUpdate(sqlStatement);
             con.commit();
         } catch (SQLException ex) {
             System.out.println("\nMessage: " + ex.getMessage());
             System.out.println("\nFailed to update!");
+            outcome=ex.getMessage();
         }
 
         return outcome;
