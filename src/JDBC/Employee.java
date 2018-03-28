@@ -11,17 +11,16 @@ import java.util.Date;
  */
 public class Employee extends GuestUser {
     private JDBCDriver jdbcDriver = JDBCDriver.getInstance();
-    private int supID;
     public Employee(int ID)throws SQLException {
         super(ID);
     }
 
     // select a day and return all free start time blocks(1 hour duration)
-    List<String> findFreeVOTime(Date Date) throws SQLException {
+   /* List<String> findFreeVOTime(Date Date) throws SQLException {
         String dateString = Date.toString();
         List<Time> startTimes = new ArrayList<Time>();
         List<Time> endTimes = new ArrayList<Time>();
-        List<String> freeTime = new ArrayList<String>();
+        List<String> freeTime = new ArrayList<>();
         ResultSet rs = jdbcDriver.executeDataQuery("SELECT startTIME, endTIME"+"FROM VolunteerOrientation_TaughtBy"+"WHERE date="+dateString);
         while (rs.next()){
             startTimes.add(rs.getTime(1));
@@ -52,7 +51,7 @@ public class Employee extends GuestUser {
     //4)
     List<String> findUpComingVO() throws SQLException {
         long now = System.currentTimeMillis();
-        List<String> upComingVO = new ArrayList<String>();
+        List<String> upComingVO = new ArrayList<>();
         java.sql.Date nowDate = new java.sql.Date(now);
         ResultSet rs = jdbcDriver.executeDataQuery("SELECT date, startTIME"+"FROM VolunteerOrientation_TaughtBy"+"WHERE instructorID ="+id+"AND date >=" + nowDate);
 
@@ -60,16 +59,16 @@ public class Employee extends GuestUser {
             upComingVO.add("Date: " + rs.getString(1) + ", Time: " + rs.getString(2));
         }
         return upComingVO;
-    }
+    }*/
 
 
-    //5
+    //5    query checked
     List<String> superviseInfo(List<String> wantedInfo) throws SQLException {
         List<List> allData = new ArrayList<List>(); // infoList 1, infoList 2, infoList 3
         List<String> ans = new ArrayList<String>();
         for(String info: wantedInfo){ //Each info is a list
-            List<String> outData = new ArrayList<String>();
-            ResultSet rs = jdbcDriver.executeDataQuery("SELECT "+ info + "FROM Employee e, users u"+"WHERE e.supervisorID ="+id+"AND e.ID = u.ID");
+            List<String> outData = new ArrayList<>();
+            ResultSet rs = jdbcDriver.executeDataQuery("SELECT distinct"+ info + "FROM Employees e, users u"+"WHERE e.supervisorID ="+id+"AND e.ID = u.ID");
             while (rs.next()){
                 outData.add(rs.getString(1));
             }
@@ -86,8 +85,8 @@ public class Employee extends GuestUser {
     }
 
     //6
-    List<String> allVStoTrain() throws SQLException {
-        List<String> ans = new ArrayList<String>();
+    /*List<String> allVStoTrain() throws SQLException {
+        List<String> ans = new ArrayList<>();
         ResultSet rs = jdbcDriver.executeDataQuery("SELECT station, shiftDate, morningShift, shiftType FROM VolunteerShift WHERE instructEmpID is NULL AND trainingReq = 'yes'");
         while (rs.next()){
             ans.add("station: "+rs.getString(1)+" shiftDate: " +rs.getString(2)+" morningShift: " +rs.getString(3)+" shiftType: " +rs.getString(4));
@@ -97,20 +96,20 @@ public class Employee extends GuestUser {
 
     //7
     List<String> allVSsigned() throws SQLException {
-        List<String> ans = new ArrayList<String>();
+        List<String> ans = new ArrayList<>();
         ResultSet rs = jdbcDriver.executeDataQuery("SELECT station, shiftDate, morningShift, shiftType FROM VolunteerShift WHERE instructEmpID ="+id);
         while (rs.next()){
             ans.add("station: "+rs.getString(1)+" shiftDate: " +rs.getString(2)+" morningShift: " +rs.getString(3)+" shiftType: " +rs.getString(4));
         }
         return ans;
-    }
+    }*/
 
     //8
-    List<Integer> allVolunteersDiffVSType() throws SQLException {
-        ResultSet rs = jdbcDriver.executeDataQuery("SELECT ID_Volunteer FROM VolunteerShift vs, Volunteer_Attends va WHERE va.ID_Volunteer = vs.volunteerID AND vs.shiftType = ALL(SELECT shiftType FROM VolunteerShift)");
-        List<Integer> ans = new ArrayList<Integer>();
+    List<String> allVolunteersDiffVSType() throws SQLException {
+        ResultSet rs = jdbcDriver.executeDataQuery("SELECT distinct u.firstName, u.lastName FROM volunteers v, users u, VOLUNTEERSHIFTS vs WHERE v.ID = u.ID and vs.VOLUNTEERID = v.ID AND NOT EXISTS ((SELECT shiftType FROM volunteerShifts vs1) minus  (SELECT shiftType FROM volunteerShifts vs2 WHERE vs2.volunteerID = v.ID))");
+        List<String> ans = new ArrayList<String>();
         while (rs.next()){
-            ans.add(rs.getInt(1));
+            ans.add(rs.getString(1)+ " " + rs.getString(2));
         }
         return ans;
     }
@@ -183,8 +182,8 @@ public class Employee extends GuestUser {
     }
 
     //10
-     List<Pair<String, Integer>>totalNumVolunTimes(String year) throws SQLException {
-        List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
+     /*List<Pair<String, Integer>>totalNumVolunTimes(String year) throws SQLException {
+        List<Pair<String, Integer>> ans = new ArrayList<>();
         String select = "SELECT users.firstName, users.lastName, temp.count";
         String from = "FROM (SELECT ID_Volunteer AS id, COUNT(*) as count FROM Volunteer_Attends AS va, VolunteerShift AS vs WHERE va.ID_Volunteer = vs.volunteerID AND vs.shiftDate LIKE '" + year +"%' GROUP BY va.ID_Volunteer) AS temp, users";
         String where = "temp.id = users.ID";
@@ -194,7 +193,6 @@ public class Employee extends GuestUser {
             ans.add(new Pair<String, Integer>(name, rs.getInt(3)));
         }
         return ans;
-    }
+    }*/
 
 }
-
