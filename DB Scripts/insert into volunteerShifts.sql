@@ -32,7 +32,7 @@ values('1','2015-12-1', 'no', 'RAM testing', '00031', '2015-11-13', 'yes', '0001
 insert into volunteerShifts
 values('1','2016-1-7', 'no', 'dismantle', '00031', '2015-12-01', 'no', 'null');
 insert into volunteerShifts
-values('2','2016-3-4', 'yes', 'dismantle', '00031', '2016-01-01', 'no, null);
+values('2','2016-3-4', 'yes', 'dismantle', '00031', '2016-01-01', 'no', null);
 
 
 insert into volunteerShifts

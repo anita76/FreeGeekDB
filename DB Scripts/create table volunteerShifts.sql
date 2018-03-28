@@ -1,4 +1,4 @@
-create table volunteerShift(
+create table volunteerShifts(
     station number(1),
     shiftDate date,
     morningShift char(3),
