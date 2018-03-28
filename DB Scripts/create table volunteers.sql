@@ -7,7 +7,7 @@ create table volunteers(
     primary key(id),
     foreign key(id) references users(id)
                         on delete cascade,
-    foreign key(orientDate, orientTime) references volunteerOrient(orientDate, orientTime)
+    foreign key(orientDate, orientTime) references volunteerOrient(orientDate, startTime)
                         on delete set null
 );
 
