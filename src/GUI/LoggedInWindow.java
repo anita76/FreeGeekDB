@@ -10,7 +10,7 @@ import java.awt.*;
 public class LoggedInWindow extends JTabbedPane{
 
     JPanel mainPage= new MainPage();
-    JPanel specialEventSearch = new JPanel();
+    JPanel specialEventSearch = new specialEventsPage();
     JPanel employeeTab = new JPanel();
     JPanel volunteerTab = new JPanel();
     JPanel volunteerShiftTab = new JPanel();

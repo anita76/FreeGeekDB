@@ -1,7 +1,6 @@
 package GUI;
 
 import JDBC.GuestUser;
-import JDBC.JDBCDriver;
 import definitions.ConstantValues;
 
 import javax.swing.*;
@@ -134,7 +133,7 @@ public class MainPage extends JPanel{
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String message = FreeGeekApp.currentUser.updateData(firstNameField.getText(),lastNameField.getText()
+                String message = FreeGeekApp.currentUser.updateAccountInfo(firstNameField.getText(),lastNameField.getText()
                         ,emailField.getText(),phoneNumField.getText());
                 if(message.equals("success")){
                     FreeGeekApp.currentUser.email = emailField.getText();

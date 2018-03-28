@@ -44,7 +44,7 @@ public class GuestUser {
         }
     }
 
-    public String updateData(String firstName, String lastName, String email, String phoneNum){
+    public String updateAccountInfo(String firstName, String lastName, String email, String phoneNum){
         JDBCDriver jdbcDriver = JDBCDriver.getInstance();
         String error=checkInputs(firstName,lastName,phoneNum);
         StringBuilder sb = new StringBuilder();
@@ -78,7 +78,7 @@ public class GuestUser {
         }
     }
 
-    public String checkInputs(String firstName, String lastName, String phoneNum){
+    private String checkInputs(String firstName, String lastName, String phoneNum){
         if(!(firstName.matches("[a-zA-Z]+"))){
             return "Invalid firstName. Names should only include letters";
         }
