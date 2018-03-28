@@ -9,8 +9,7 @@ public class GuestUser {
     public String firstName;
     public String lastName;
     public String email;
-    public long phoneNum;
-    public String memStartDate;
+    public String phoneNum;
     private JDBCDriver jdbcDriver = JDBCDriver.getInstance();
     private boolean created= false;
 
@@ -35,11 +34,7 @@ public class GuestUser {
                 firstName = result.getString("firstName");
                 lastName = result.getString("lastName");
                 email = result.getString("email");
-                phoneNum = result.getLong("phone");
-                if(result.wasNull()){
-                    phoneNum=-1;
-                }
-                memStartDate = result.getString("membershipStartData");
+                phoneNum = result.getString("phone");
                 created=true;
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -49,10 +44,17 @@ public class GuestUser {
         }
     }
 
+    public boolean updateData(String firstName, String lastName, String email, String phoneNum){
+        JDBCDriver jdbcDriver = JDBCDriver.getInstance();
+        StringBuilder sb = new StringBuilder();
+        //todo
+        return true;
+    }
+
     public int getId() {
         return id;
     }
-    public long getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
     public String getEmail() {
@@ -63,9 +65,6 @@ public class GuestUser {
     }
     public String getLastName() {
         return lastName;
-    }
-    public String getMemStartDate() {
-        return memStartDate;
     }
 
     public boolean isCreated(){

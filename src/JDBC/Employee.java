@@ -11,7 +11,7 @@ import java.util.Date;
  */
 public class Employee extends GuestUser {
     private JDBCDriver jdbcDriver = JDBCDriver.getInstance();
-    public Employee(int ID)throws SQLException {
+    public Employee(int ID){
         super(ID);
     }
 

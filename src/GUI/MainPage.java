@@ -1,6 +1,7 @@
 package GUI;
 
 import JDBC.GuestUser;
+import JDBC.JDBCDriver;
 import definitions.ConstantValues;
 
 import javax.swing.*;
@@ -60,10 +61,10 @@ public class MainPage extends JPanel{
 
     private void setFieldValues(){
         GuestUser cur = FreeGeekApp.currentUser;
-        firstNameField.setText(cur.getFirstName().trim());
-        lastNameField.setText(cur.getLastName().trim());
-        emailField.setText(cur.getEmail().trim());
-        phoneNumField.setText(Long.toString(cur.getPhoneNum()));
+        firstNameField.setText(cur.getFirstName());
+        lastNameField.setText(cur.getLastName());
+        emailField.setText(cur.getEmail());
+        phoneNumField.setText(cur.getPhoneNum());
     }
 
     private void setLabels(JLabel label, int x, int y){
@@ -133,7 +134,8 @@ public class MainPage extends JPanel{
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                FreeGeekApp.currentUser.updateData(firstNameField.getText(),lastNameField.getText()
+                        ,emailField.getText(),phoneNumField.getText());
             }
         });
     }

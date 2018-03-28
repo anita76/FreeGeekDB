@@ -132,37 +132,67 @@ public class LoginWindow extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 String inputIDValue = userIDField.getText();
                 JDBCDriver jdbcDriver = JDBCDriver.getInstance();
+                /*try{
+                    int id = Integer.parseInt(inputIDValue);
+                    GuestUser gu = new GuestUser(id);
+                    //Todo: once volunteer and empolyee are done you have to add the correct user here
+                    FreeGeekApp.currentUser=gu;
+                    if(gu.isCreated()) {
+                        LoggedInWindow loggedInWindow = new LoggedInWindow();
+                        FreeGeekApp.loggedInWindow = loggedInWindow;
+                        FreeGeekApp.windowFrame.add(loggedInWindow);
+                        setVisible(false);
+                        setEnabled(false);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"No such account exits.", "Invalid ID",JOptionPane.ERROR_MESSAGE);
+                    }
+
+                }catch(NumberFormatException ex){
+                    JOptionPane.showMessageDialog(null,"No such account exits","Invalid ID", JOptionPane.ERROR_MESSAGE);
+                }*/
+
                 try{
                     int id = Integer.parseInt(inputIDValue);
-                    StringBuilder sbEmp = new StringBuilder();
-                    sbEmp.append("select * from employees where id=");
-                    sbEmp.append(id);
-                    String query = sbEmp.toString();
-                    ResultSet rsEmp = jdbcDriver.executeDataQuery(query);
-                    StringBuilder sbVoln = new StringBuilder();
-                    sbVoln.append("select * from volunteers where id=");
-                    sbVoln.append(id);
-                    ResultSet rsVoln = jdbcDriver.executeDataQuery(query);
+                    // Employee Check?
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("select * from employees where id=");
+                    sb.append(id);
+                    String query = sb.toString();
+                    ResultSet rse = jdbcDriver.executeDataQuery(query);
+                    boolean isEmployee=false;
                     try {
-                        if (rsEmp.next()){
-                            Employee em = new Employee(id);
-                            FreeGeekApp.currentUser = em;
-                        }
-                        else if(rsVoln.next()) {
-                            GuestUser gu = new Volunteer(id);
-                            FreeGeekApp.currentUser = gu;
-                        }else{
-                            GuestUser gu = new GuestUser(id);
-                            FreeGeekApp.currentUser = gu;
-                        }
+                        isEmployee = rse.next();
                     } catch (SQLException e1) {
                         e1.printStackTrace();
                     }
+                    sb = new StringBuilder();
+                    sb.append("select * from volunteers where id=");
+                    sb.append(id);
+                    query = sb.toString();
+                    rse = jdbcDriver.executeDataQuery(query);
+                    boolean isVolunteer=false;
+                    try {
+                        isVolunteer = rse.next();
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+
+                    //Todo: once volunteer and empolyee are done you have to add the correct user here
+
+                    if (isEmployee){
+                        FreeGeekApp.currentUser = new Employee(id);
+                    }else if(isVolunteer) {
+                        FreeGeekApp.currentUser = new Volunteer(id);
+                    }else{
+                        FreeGeekApp.currentUser = new GuestUser(id);
+                    }
+
 
                     if(FreeGeekApp.currentUser.isCreated()) {
                         LoggedInWindow loggedInWindow = new LoggedInWindow();
                         FreeGeekApp.loggedInWindow = loggedInWindow;
                         FreeGeekApp.windowFrame.add(loggedInWindow);
+                        userIDField.setText("");
                         setVisible(false);
                         setEnabled(false);
                     }else{

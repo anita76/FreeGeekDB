@@ -29,6 +29,7 @@ public class JDBCDriver {
             // Connect to database
             con = DriverManager.getConnection(url,username,password);
             stmt = con.createStatement();
+            con.setAutoCommit(false);
             System.out.println("\nConnected to Oracle!");
         }catch(SQLException ex){
             System.out.println("\nMessage: " + ex.getMessage());
@@ -55,6 +56,7 @@ public class JDBCDriver {
         int outcome=-1;
         try{
             outcome = stmt.executeUpdate(sqlStatement);
+            con.commit();
         } catch (SQLException ex) {
             System.out.println("\nMessage: " + ex.getMessage());
             System.out.println("\nFailed to update!");
@@ -65,13 +67,12 @@ public class JDBCDriver {
 
     // This is to execute any query statements
     public ResultSet executeDataQuery(String sqlStatement){
-        ResultSet result = null;
         try {
-            result = stmt.executeQuery(sqlStatement);
+            return  stmt.executeQuery(sqlStatement);
         } catch (SQLException ex) {
             System.out.println("\nMessage: " + ex.getMessage());
             System.out.println("\nFailed to execute query: " + sqlStatement);
+            return null;
         }
-        return result;
     }
 }
