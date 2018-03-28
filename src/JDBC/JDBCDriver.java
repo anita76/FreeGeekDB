@@ -16,7 +16,7 @@ public class JDBCDriver {
     private JDBCDriver() {
         String username = "";//set to your oracle username (ora_a1b7c)
         String password = "";//set to your oracle password (a11131353)
-        String url = "jdbc:oracle:thin:@localhost:53391:ug";
+        String url = "jdbc:oracle:thin:@localhost:62467:ug";
 
         try {
             // Load the Oracle JDBC driver

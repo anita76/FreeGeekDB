@@ -9,30 +9,41 @@ public class GuestUser {
     public String firstName;
     public String lastName;
     public String email;
-    public int phoneNum;
+    public long phoneNum;
     public String memStartDate;
     private JDBCDriver jdbcDriver = JDBCDriver.getInstance();
+    private boolean created= false;
 
-    public GuestUser(int ID) throws SQLException {
+    public GuestUser(int ID){
         id = ID;
         StringBuilder sb = new StringBuilder();
-        sb.append("select * from users");
-        //sb.append(id);
+        sb.append("select * from users where id=");
+        sb.append(id);
         String query = sb.toString();
         ResultSet result = jdbcDriver.executeDataQuery(query);
-        while(result.next()){
+
+        boolean next=false;
+        try {
+            next = result.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.exit(-1);
+        }
+        if(next){
             try {
                 id = result.getInt("id");
                 firstName = result.getString("firstName");
                 lastName = result.getString("lastName");
                 email = result.getString("email");
-                phoneNum = result.getInt("phone#");
+                phoneNum = result.getLong("phone#");
                 if(result.wasNull()){
                     phoneNum=-1;
                 }
-                memStartDate = result.getString("memStartDate");
+                memStartDate = result.getString("membershipStartData");
+                created=true;
             } catch (SQLException e) {
                 e.printStackTrace();
+                System.exit(-1);
             }
 
         }
@@ -41,7 +52,7 @@ public class GuestUser {
     public int getId() {
         return id;
     }
-    public int getPhoneNum() {
+    public long getPhoneNum() {
         return phoneNum;
     }
     public String getEmail() {
@@ -55,5 +66,9 @@ public class GuestUser {
     }
     public String getMemStartDate() {
         return memStartDate;
+    }
+
+    public boolean isCreated(){
+        return created;
     }
 }

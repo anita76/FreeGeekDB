@@ -129,10 +129,22 @@ public class LoginWindow extends JPanel{
                 String inputIDValue = userIDField.getText();
                 JDBCDriver jdbcDriver = JDBCDriver.getInstance();
                 try{
-                    Integer.parseInt(inputIDValue);
+                    int id = Integer.parseInt(inputIDValue);
+                    GuestUser gu = new GuestUser(id);
+                    //Todo: once volunteer and empolyee are done you have to add the correct user here
+                    FreeGeekApp.currentUser=gu;
+                    if(gu.isCreated()) {
+                        LoggedInWindow loggedInWindow = new LoggedInWindow();
+                        FreeGeekApp.loggedInWindow = loggedInWindow;
+                        FreeGeekApp.windowFrame.add(loggedInWindow);
+                        setVisible(false);
+                        setEnabled(false);
+                    }else{
+                        JOptionPane.showMessageDialog(null,"No such account exits.", "Invalid ID",JOptionPane.ERROR_MESSAGE);
+                    }
 
                 }catch(NumberFormatException ex){
-                    JOptionPane.showMessageDialog(null,"Please Enter a Number","Error!", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"No such account exits","Invalid ID", JOptionPane.ERROR_MESSAGE);
                 }
 
             }
