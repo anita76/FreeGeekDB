@@ -44,11 +44,47 @@ public class GuestUser {
         }
     }
 
-    public boolean updateData(String firstName, String lastName, String email, String phoneNum){
+    public String updateData(String firstName, String lastName, String email, String phoneNum){
         JDBCDriver jdbcDriver = JDBCDriver.getInstance();
+        String error=checkInputs(firstName,lastName,phoneNum);
         StringBuilder sb = new StringBuilder();
-        //todo
-        return true;
+        if(error.equals("constraint satisfied")){
+            sb.append("update users set firstName='");
+            sb.append(firstName);
+            sb.append("', lastName='");
+            sb.append(lastName);
+            sb.append("',email='");
+            sb.append(email);
+            sb.append("',phone='");
+            sb.append(phoneNum);
+            sb.append("' where id=");
+            sb.append(this.getId());
+        }else{
+            return error;
+        }
+        String query = sb.toString();
+        int outcome = jdbcDriver.executeDataUpdate(query);
+        if(outcome>0){
+            return "success";
+        }else{
+            return "failed to add";
+        }
+    }
+
+    public String checkInputs(String firstName, String lastName, String phoneNum){
+        if(!(firstName.matches("[a-zA-Z]+"))){
+            return "Invalid firstName. Names should only include letters";
+        }
+        if(!(lastName.matches("[a-zA-Z]+"))){
+            return "Invalid lastName. Names should only include letters";
+        }
+        try{
+            long temp = Long.parseLong(phoneNum);
+        }catch (Exception e){
+            return "Invalid phone number";
+        }
+        return "constraint satisfied";
+
     }
 
     public int getId() {

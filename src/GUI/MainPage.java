@@ -134,8 +134,23 @@ public class MainPage extends JPanel{
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FreeGeekApp.currentUser.updateData(firstNameField.getText(),lastNameField.getText()
+                String message = FreeGeekApp.currentUser.updateData(firstNameField.getText(),lastNameField.getText()
                         ,emailField.getText(),phoneNumField.getText());
+                if(message.equals("success")){
+                    FreeGeekApp.currentUser.email = emailField.getText();
+                    FreeGeekApp.currentUser.firstName = firstNameField.getText();
+                    FreeGeekApp.currentUser.lastName = lastNameField.getText();
+                    FreeGeekApp.currentUser.phoneNum = phoneNumField.getText();
+                    JOptionPane.showMessageDialog(null,"Saved changes","",JOptionPane.INFORMATION_MESSAGE);
+
+                }else{
+                    JOptionPane.showMessageDialog(null,message, "Invalid Input",JOptionPane.ERROR_MESSAGE);
+                    emailField.setText(FreeGeekApp.currentUser.email);
+                    firstNameField.setText(FreeGeekApp.currentUser.firstName);
+                    lastNameField.setText(FreeGeekApp.currentUser.lastName);
+                    phoneNumField.setText(FreeGeekApp.currentUser.phoneNum );
+
+                }
             }
         });
     }

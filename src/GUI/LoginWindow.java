@@ -177,8 +177,6 @@ public class LoginWindow extends JPanel{
                         e1.printStackTrace();
                     }
 
-                    //Todo: once volunteer and empolyee are done you have to add the correct user here
-
                     if (isEmployee){
                         FreeGeekApp.currentUser = new Employee(id);
                     }else if(isVolunteer) {
