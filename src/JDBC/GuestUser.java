@@ -35,7 +35,7 @@ public class GuestUser {
                 firstName = result.getString("firstName");
                 lastName = result.getString("lastName");
                 email = result.getString("email");
-                phoneNum = result.getLong("phone#");
+                phoneNum = result.getLong("phone");
                 if(result.wasNull()){
                     phoneNum=-1;
                 }

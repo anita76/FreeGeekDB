@@ -67,7 +67,7 @@ public class Employee extends GuestUser {
         List<List> allData = new ArrayList<List>(); // infoList 1, infoList 2, infoList 3
         List<String> ans = new ArrayList<String>();
         for(String info: wantedInfo){ //Each info is a list
-            List<String> outData = new ArrayList<>();
+            List<String> outData = new ArrayList<String>();
             ResultSet rs = jdbcDriver.executeDataQuery("SELECT distinct"+ info + "FROM Employees e, users u"+"WHERE e.supervisorID ="+id+"AND e.ID = u.ID");
             while (rs.next()){
                 outData.add(rs.getString(1));
