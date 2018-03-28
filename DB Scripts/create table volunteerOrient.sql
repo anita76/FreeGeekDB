@@ -1,6 +1,6 @@
 CREATE TABLE volunteerOrient(
 	orientDate date, 
-	orientTime char(20), 
+	startTime char(20), 
 	endTime char(20), 
 	instructorID number(5) NOT NULL,
 	PRIMARY KEY (orientDate, orientTime),
