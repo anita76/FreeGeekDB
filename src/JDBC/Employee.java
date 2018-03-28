@@ -14,7 +14,6 @@ public class Employee extends GuestUser {
     private int supID;
     public Employee(int ID)throws SQLException {
         super(ID);
-        sb.append("select  from users where id=");
     }
 
     // select a day and return all free start time blocks(1 hour duration)
