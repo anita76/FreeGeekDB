@@ -1,7 +1,9 @@
 package JDBC;
 
 public class Volunteer extends GuestUser {
-    public Volunteer(){
-        super(3);
+    private int volunteerHr;
+
+    public Volunteer(int ID){
+        super(ID);
     }
 }
