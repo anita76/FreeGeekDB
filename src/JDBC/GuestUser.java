@@ -5,12 +5,12 @@ import java.sql.SQLException;
 
 public class GuestUser {
 
-    public int id;
-    public String firstName;
-    public String lastName;
-    public String email;
-    public long phoneNum;
-    public String memStartDate;
+    protected int id;
+    protected String firstName;
+    protected String lastName;
+    protected String email;
+    protected long phoneNum;
+    protected String memStartDate;
     private JDBCDriver jdbcDriver = JDBCDriver.getInstance();
     private boolean created= false;
 
