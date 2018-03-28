@@ -1,5 +1,5 @@
 create table volunteers(
-    id int not null,
+    id number(5) not null,
     orientSignUpDate date,
     points Number(5),
     orientDate date,

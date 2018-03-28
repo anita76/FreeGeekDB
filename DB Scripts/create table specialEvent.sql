@@ -4,7 +4,7 @@ create table specialEvent(
 	entranceFee  integer, 
 	startTIME char(20), 
 	endTIME char(20),
-	capacity integer,
+	capacity number(5),
 	PRIMARY KEY (eventDATE, startTIME)
 );
 
