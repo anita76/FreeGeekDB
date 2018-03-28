@@ -5,6 +5,5 @@ create table specialEvent(
 	startTIME date, 
 	endTIME date,
 	capacity integer,
-	CONSTRAINT specialEventID PRIMARY KEY (eventDATE, startTIME)
-
+	PRIMARY KEY (eventDATE, startTIME)
 );

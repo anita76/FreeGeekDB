@@ -1,14 +1,12 @@
 create table volunteers(
     id int not null,
     orientSignUpDate date,
-    points int,
+    points Number(5),
     orientDate date,
     orientTime date,
-    CONSTRAINT vid primary key(id),
-    CONSTRAINT vlid foreign key(id) references user(id)
-                        on update no action
-                        on delete cascade
-    CONSTRAINT oTime foreign key(orientDate, orientTime) references volunteerOrient
-                        on update no action
+    primary key(id),
+    foreign key(id) references users(id)
+                        on delete cascade,
+    foreign key(orientDate, orientTime) references volunteerOrient(orientDate, orientTime)
                         on delete set null
 );

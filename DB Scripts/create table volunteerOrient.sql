@@ -3,8 +3,7 @@ CREATE TABLE VolunteerOrient(
 	orientTime date, 
 	endTime date, 
 	instructorID number(5) NOT NULL,
-	CONSTRAINT eventTime PRIMARY KEY (date, startTIME),
-	CONSTRAINT instructor FOREIGN KEY (instructorID) REFERENCES Employee (ID)
-						ON UPDATE NO ACTION
+	PRIMARY KEY (orientDate, orientTime),
+	FOREIGN KEY (instructorID) REFERENCES employees (ID)
 						ON DELETE CASCADE
 );
