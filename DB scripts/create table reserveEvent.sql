@@ -1,7 +1,7 @@
 CREATE TABLE reserveEvents(
-	eventDate char(20) not null,
+	eventDate date not null,
 	eventStartTime char(20) not null,
-	purchaseDate char(20),
+	purchaseDate date,
 	userID number(5) not null,
 	Primary key(eventDate, eventStartTime,userID),
 	FOREIGN KEY (eventDate, eventStartTime) REFERENCES specialEvent( eventDATE, startTIME)

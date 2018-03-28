@@ -1,10 +1,10 @@
 create table volunteerShifts(
     station int,
-    shiftDate char(20),
+    shiftDate date,
     morningShift char(3),
     shiftType char(30),
     volunteerID int,
-    signupDate char(20),
+    signupDate date,
     trainingReq char(30),
     instructEmpID int,
     primary key(station, shiftDate, morningShift, shiftType),

@@ -1,8 +1,8 @@
 create table volunteers(
     id int not null,
-    orientSignUpDate char(20),
+    orientSignUpDate date,
     points Number(5),
-    orientDate char(20),
+    orientDate date,
     orientTime char(20),
     primary key(id),
     foreign key(id) references users(id)

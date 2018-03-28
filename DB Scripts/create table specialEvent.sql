@@ -1,5 +1,5 @@
 create table specialEvent(
-	eventDATE char(20),
+	eventDATE date,
 	name char(30), 
 	entranceFee  integer, 
 	startTIME char(20), 
