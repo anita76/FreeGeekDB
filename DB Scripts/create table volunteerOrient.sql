@@ -3,7 +3,7 @@ CREATE TABLE volunteerOrient(
 	startTime char(20), 
 	endTime char(20), 
 	instructorID number(5) NOT NULL,
-	PRIMARY KEY (orientDate, orientTime),
+	PRIMARY KEY (orientDate, startTime),
 	FOREIGN KEY (instructorID) REFERENCES employees (ID)
 						ON DELETE CASCADE
 );
