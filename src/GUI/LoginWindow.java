@@ -1,12 +1,16 @@
 package GUI;
+import JDBC.Employee;
 import JDBC.GuestUser;
 import JDBC.JDBCDriver;
+import JDBC.Volunteer;
 import definitions.ConstantValues;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class LoginWindow extends JPanel{
 
@@ -130,10 +134,32 @@ public class LoginWindow extends JPanel{
                 JDBCDriver jdbcDriver = JDBCDriver.getInstance();
                 try{
                     int id = Integer.parseInt(inputIDValue);
-                    GuestUser gu = new GuestUser(id);
-                    //Todo: once volunteer and empolyee are done you have to add the correct user here
-                    FreeGeekApp.currentUser=gu;
-                    if(gu.isCreated()) {
+                    StringBuilder sbEmp = new StringBuilder();
+                    sbEmp.append("select * from employees where id=");
+                    sbEmp.append(id);
+                    String query = sbEmp.toString();
+                    ResultSet rsEmp = jdbcDriver.executeDataQuery(query);
+                    StringBuilder sbVoln = new StringBuilder();
+                    sbVoln.append("select * from volunteers where id=");
+                    sbVoln.append(id);
+                    ResultSet rsVoln = jdbcDriver.executeDataQuery(query);
+                    try {
+                        if (rsEmp.next()){
+                            Employee em = new Employee(id);
+                            FreeGeekApp.currentUser = em;
+                        }
+                        else if(rsVoln.next()) {
+                            GuestUser gu = new Volunteer(id);
+                            FreeGeekApp.currentUser = gu;
+                        }else{
+                            GuestUser gu = new GuestUser(id);
+                            FreeGeekApp.currentUser = gu;
+                        }
+                    } catch (SQLException e1) {
+                        e1.printStackTrace();
+                    }
+
+                    if(FreeGeekApp.currentUser.isCreated()) {
                         LoggedInWindow loggedInWindow = new LoggedInWindow();
                         FreeGeekApp.loggedInWindow = loggedInWindow;
                         FreeGeekApp.windowFrame.add(loggedInWindow);
