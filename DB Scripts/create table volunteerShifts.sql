@@ -1,12 +1,12 @@
 create table volunteerShifts(
-    station int,
+    station number(1),
     shiftDate date,
     morningShift char(3),
     shiftType char(30),
-    volunteerID int,
+    volunteerID number(5),
     signupDate date,
     trainingReq char(30),
-    instructEmpID int,
+    instructEmpID number(5),
     primary key(station, shiftDate, morningShift, shiftType),
     foreign key(volunteerID) references volunteers(id)
                             on delete cascade,
