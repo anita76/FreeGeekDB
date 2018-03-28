@@ -8,3 +8,4 @@ CREATE TABLE employees (
 	FOREIGN KEY (supervisorID) REFERENCES employees (ID)
 				ON DELETE SET NULL
 );
+
