@@ -43,45 +43,51 @@ public class JDBCDriverTest {
     public void executeDataQuery() throws SQLException {
         Employee employee = new Employee(00001);
         List<String> info = new ArrayList<String>();
-        List<String> out = new ArrayList<String>();
+        ResultSet rs = null;
 
         info.add("ID");
         info.add("firstName");
         info.add("lastName");
-        out = employee.superviseInfo(info);
-        System.out.printf("Info that you want: "+info.get(0)+ " "+info.get(1)+" "+info.get(2)+"\n");
-        for (String s: out){
-            System.out.printf(s);
-            System.out.printf("\n");
+         rs = employee.superviseInfo(info);
+        while (rs.next()){
+            for(int i = 0; i < info.size(); i++){
+                System.out.printf(info.get(i)+": ");
+                System.out.printf(rs.getString(i+1)+"\n");
+            }
         }
-        out = employee.allVolunteersDiffVSType();
+        rs = employee.allVolunteersDiffVSType();
         System.out.printf("volunteers who attend shifts with all different shiftTypes:\n");
-        for (String s: out){
-            System.out.printf(s);
-            System.out.printf("\n");
+        while (rs.next()){
+            System.out.printf(rs.getString(1)+"\n");
         }
-        List<Pair<String, Integer>> outs = new ArrayList<Pair<String, Integer>>();
-        outs = employee.minAttend();
-        for (Pair<String, Integer> s: outs){
-            String ans = s.getKey() + " is " + s.getValue();
-            System.out.printf("Minimum attend for special event: "+ans);
-            System.out.printf("\n");
+
+        rs = employee.minAttend();
+        while (rs.next()){
+            System.out.printf("Minimum attend for special event: ");
+            System.out.printf(rs.getString(1)+" " + rs.getString(2)+"\n");
         }
-        outs = employee.maxAttend();
-        for (Pair<String, Integer> s: outs){
-            String ans = s.getKey() + " is " + s.getValue();
-            System.out.printf("Maximum attend for special event: "+ans);
-            System.out.printf("\n");
+        System.out.printf("\n");
+
+        rs = employee.maxAttend();
+        while (rs.next()){
+            System.out.printf("Maximum attend for special event: ");
+            System.out.printf(rs.getString(1)+" " + rs.getString(2)+"\n");
         }
-        outs = employee.averageAttend();
-        for (Pair<String, Integer> s: outs){
-            String ans = s.getKey() + " is " + s.getValue();
-            System.out.printf("Average attend for special event: "+ans);
-            System.out.printf("\n");
+        System.out.printf("\n");
+        rs = employee.averageAttend();
+        while (rs.next()){
+            System.out.printf("Average attend for special event: ");
+            System.out.printf(rs.getString(1)+" " + rs.getString(2)+"\n");
         }
-        int anss = employee.leastPopularEvent();
-        System.out.printf("least average of attendence: " + anss + "\n");
-        anss = employee.mostPopularEvent();
-        System.out.printf("most average of attendence: " + anss + "\n");
+        System.out.printf("\n");
+        rs = employee.leastPopularEvent();
+        while (rs.next()) {
+            System.out.printf("least average of attendence: " + rs.getString(1) + "\n");
+        }
+
+        rs = employee.mostPopularEvent();
+        while (rs.next()){
+            System.out.printf("most average of attendence: " + rs.getString(1) + "\n");
+        }
     }
 }
