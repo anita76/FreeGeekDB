@@ -30,11 +30,11 @@ public class LoggedInWindow extends JTabbedPane{
             add("Volunteering", volunteering);
         }
         if(FreeGeekApp.currentUser instanceof Employee){
-            wipTool = new WipTool();
+            wipTool = new VolunteerStatistics();
             employeeTab = new EmployeeTool();
             statistics = new Statistics();
             add("Employee Tool",employeeTab);
-            add("wip",wipTool);
+            add("Volunteer Stat Page",wipTool);
             add("Statistics",statistics);
         }
     }

@@ -17,6 +17,9 @@ public class Volunteer extends GuestUser {
         super(ID);
     }
 
+    public void getFullSpots(String from, String to) {
+
+    }
     public int getVolunteerHr() {
         StringBuilder sb = new StringBuilder();
         sb.append("select count(*) from volunteers v, volunteerShifts vs where v.id = vs.volunteerId and id = ");
