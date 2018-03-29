@@ -25,6 +25,7 @@ public class WipTool extends JPanel{
     private GridBagConstraints c = new GridBagConstraints();
 
     public WipTool(){
+        /*
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
         setBackground(new Color(199,210,208));
         setLayout(new GridBagLayout());
@@ -37,12 +38,12 @@ public class WipTool extends JPanel{
         };
 
         Employee cur = (Employee) FreeGeekApp.currentUser;
-        ResultSet rs = null;
-        try {
+        ResultSet rs = null;*/
+        /*try {
             rs = cur.minAttend();
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        }*//*
         ResultTable rt = new ResultTable(rs);
         scroll= rt.getScrollPane();
         resultTable = rt.getResultTable();
@@ -52,7 +53,7 @@ public class WipTool extends JPanel{
         add(volunteerLabel,c);
         c.gridx=0;
         c.gridy=1;
-        add(scroll,c);
+        add(scroll,c);*/
 
 
     }

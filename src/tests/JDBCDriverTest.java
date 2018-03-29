@@ -25,12 +25,11 @@ public class JDBCDriverTest {
     @org.junit.Test
     public void getInstance() throws SQLException {
         Employee e = new Employee(1);
-        List<String> inputList = new ArrayList<String>();
-        inputList.add("FIRSTNAME");
-        inputList.add("LASTNAME");
-        inputList.add("EMAIL");
-        ResultSet rs = e.superviseInfo(inputList);
-        //JDBCDriver jdbcDriver = JDBCDriver.getInstance();
+        List<Pair<String, Integer>> rs = e.leastPopularEvent();
+        for(Pair<String, Integer> cur:rs){
+            System.out.println(cur.getValue());
+        }
+
     }
 
     @org.junit.Test
@@ -48,7 +47,7 @@ public class JDBCDriverTest {
         Employee employee = new Employee(00001);
         List<String> info = new ArrayList<String>();
         ResultSet rs = null;
-
+/*
         info.add("ID");
         info.add("firstName");
         info.add("lastName");
@@ -92,6 +91,6 @@ public class JDBCDriverTest {
         rs = employee.mostPopularEvent();
         while (rs.next()){
             System.out.printf("most average of attendence: " + rs.getString(1) + "\n");
-        }
+        }*/
     }
 }

@@ -132,24 +132,6 @@ public class LoginWindow extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 String inputIDValue = userIDField.getText();
                 JDBCDriver jdbcDriver = JDBCDriver.getInstance();
-                /*try{
-                    int id = Integer.parseInt(inputIDValue);
-                    GuestUser gu = new GuestUser(id);
-                    FreeGeekApp.currentUser=gu;
-                    if(gu.isCreated()) {
-                        LoggedInWindow loggedInWindow = new LoggedInWindow();
-                        FreeGeekApp.loggedInWindow = loggedInWindow;
-                        FreeGeekApp.windowFrame.add(loggedInWindow);
-                        setVisible(false);
-                        setEnabled(false);
-                    }else{
-                        JOptionPane.showMessageDialog(null,"No such account exits.", "Invalid ID",JOptionPane.ERROR_MESSAGE);
-                    }
-
-                }catch(NumberFormatException ex){
-                    JOptionPane.showMessageDialog(null,"No such account exits","Invalid ID", JOptionPane.ERROR_MESSAGE);
-                }*/
-
                 try{
                     int id = Integer.parseInt(inputIDValue);
                     // Employee Check?

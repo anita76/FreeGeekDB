@@ -170,18 +170,30 @@ public class Employee extends GuestUser {
         return rs;
     }
 
-    public ResultSet leastPopularEvent() throws SQLException {
-        //String aggregation = "SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
-        String nested = "SELECT MIN(avg) AS min FROM (SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename)";
+    public List<Pair<String, Integer>> leastPopularEvent() throws SQLException {
+        List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
+        String nested = "create view averageAttendance as (SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename)";
+        jdbcDriver.executeDataUpdate(nested);
+        nested = "select sename, avg from averageAttendance where avg=(select min(avg) from averageAttendance)";
         ResultSet rs = jdbcDriver.executeDataQuery(nested);
-        return rs;
+        while (rs.next()){
+            ans.add(new Pair<String, Integer>(rs.getString(1), rs.getInt(2)));
+        }
+        jdbcDriver.executeDataUpdate("drop view averageAttendance");
+        return ans;
     }
 
-    public ResultSet mostPopularEvent() throws SQLException {
-        //String aggregation = "SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
-        String nested = "SELECT MAX(avg) AS min FROM (SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename)";
+    public List<Pair<String, Integer>> mostPopularEvent() throws SQLException {
+        List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
+        String nested = "create view averageAttendance as (SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename)";
+        jdbcDriver.executeDataUpdate(nested);
+        nested = "select sename, avg from averageAttendance where avg=(select max(avg) from averageAttendance)";
         ResultSet rs = jdbcDriver.executeDataQuery(nested);
-        return rs;
+        while (rs.next()){
+            ans.add(new Pair<String, Integer>(rs.getString(1), rs.getInt(2)));
+        }
+        jdbcDriver.executeDataUpdate("drop view averageAttendance");
+        return ans;
     }
 
     //10
@@ -197,9 +209,5 @@ public class Employee extends GuestUser {
         }
         return ans;
     }*/
-    public void DeleteEmployeeAccount(){
-        String deletionInDB = "delete from employee where ID = "+id;
-        jdbcDriver.executeDataQuery(deletionInDB);
-    }
 
 }

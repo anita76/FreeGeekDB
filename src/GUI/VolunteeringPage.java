@@ -1,6 +1,8 @@
 package GUI;
 
-public class VolunteeringPage {
+import javax.swing.*;
+
+public class VolunteeringPage extends JPanel{
 
     VolunteeringPage(){
 

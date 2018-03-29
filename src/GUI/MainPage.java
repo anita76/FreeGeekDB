@@ -173,8 +173,7 @@ public class MainPage extends JPanel{
                 FreeGeekApp.currentUser.deleteAccount();
                 FreeGeekApp.loginWindow.setEnabled(true);
                 FreeGeekApp.loginWindow.setVisible(true);
-                FreeGeekApp.loggedInWindow.setEnabled(false);
-                FreeGeekApp.loggedInWindow.setVisible(false);
+                FreeGeekApp.windowFrame.remove(FreeGeekApp.loggedInWindow);
 
             }
         });
