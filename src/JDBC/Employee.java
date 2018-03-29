@@ -70,8 +70,9 @@ public class Employee extends GuestUser {
         for(String info: wantedInfo){ //Each info is a list
             //List<String> outData = new ArrayList<String>();
 
-            if (info == "id"|| info == "iD"|| info =="ID"|| info =="Id"){
-                query += " e."+ info +", ";
+            info = info.toUpperCase();
+            if (info.equals("ID")||info.equals("FULLTIME")||info.equals("SUPERVISORID")){
+                query += " supervisor."+ info +", ";
             }
             else query += " "+info +", ";
             //System.out.printf(query);     //test only
@@ -91,7 +92,7 @@ public class Employee extends GuestUser {
         }
         return ans;*/
         query = query.substring(0, query.length()-2);
-        ResultSet rs = jdbcDriver.executeDataQuery("SELECT "+ query + " FROM Employees e, users u "+"WHERE e.supervisorID = "+id+" AND e.ID = u.ID");
+        ResultSet rs = jdbcDriver.executeDataQuery("SELECT "+ query + " FROM Employees e, Employees supervisor, users u WHERE e.ID = "+id+" AND e.supervisorid = u.ID AND e.supervisorid = supervisor.id");
         return rs;
     }
 
@@ -196,10 +197,9 @@ public class Employee extends GuestUser {
         }
         return ans;
     }*/
-
-     public void DeleteEmployeeAccount(){
-         String deletionInDB = "delete from employee where ID = "+id;
-         jdbcDriver.executeDataQuery(deletionInDB);
-     }
+    public void DeleteEmployeeAccount(){
+        String deletionInDB = "delete from employee where ID = "+id;
+        jdbcDriver.executeDataQuery(deletionInDB);
+    }
 
 }
