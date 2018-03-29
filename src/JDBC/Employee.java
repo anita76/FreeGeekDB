@@ -99,7 +99,7 @@ public class Employee extends GuestUser {
     }*/
 
     //8
-    public ResultSet allVolunteersDiffVSType() throws SQLException {
+    public ResultSet  () throws SQLException {
         String query = "SELECT distinct u.firstName, u.lastName FROM volunteers v, users u, VOLUNTEERSHIFTS vs WHERE v.ID = u.ID and vs.VOLUNTEERID = v.ID AND NOT EXISTS ((SELECT shiftType FROM volunteerShifts vs1) minus  (SELECT shiftType FROM volunteerShifts vs2 WHERE vs2.volunteerID = v.ID))";
         ResultSet rs = jdbcDriver.executeDataQuery(query);
         /*List<String> ans = new ArrayList<String>();
