@@ -197,8 +197,9 @@ public class Employee extends GuestUser {
         return ans;
     }*/
 
-     public void DeleteAccount(){
-
+     public void DeleteEmployeeAccount(){
+         String deletionInDB = "delete from employee where ID = "+id;
+         jdbcDriver.executeDataQuery(deletionInDB);
      }
 
 }
