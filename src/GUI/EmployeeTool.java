@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
@@ -17,6 +18,7 @@ import javafx.util.Pair;
 public class EmployeeTool extends JPanel{
 
     // SUPERVISOR INFO SEARCH
+    /*
     private JButton search = new JButton("Search for info");
     private JLabel supervisorInfoLabel = new JLabel("Which Supervisor Info:");
     private JTextField searchField = new JTextField(25);
@@ -24,6 +26,17 @@ public class EmployeeTool extends JPanel{
     // ALL VOLUNTEERS WHO HAVE DONE ALL SHIFT TYPES
     private JButton get = new JButton("Get Volunteers");
     private JLabel allShiftsVolunteers = new JLabel("Experienced Volunteers:");
+    */
+    private GridBagConstraints c = new GridBagConstraints();
+
+    JScrollPane scroll;
+    JTable resultTable;
+
+    JLabel supervisorLabel;
+    JCheckBox nameButton;
+    JCheckBox emailButton;
+    JCheckBox phoneButton;
+    JButton searchButton;
 
     /*
     // MIN ATTEND EVNETS PER DAY
@@ -43,14 +56,33 @@ public class EmployeeTool extends JPanel{
 
         // UI ==============================
         // SUPERVISOR INFO SEARCH
+        /*
         setLabels(supervisorInfoLabel,0,1);
-        setFields(searchField,1,1);
         setBtn(search,2,1);
+        */
+        supervisorLabel = new JLabel("MySupervisor's");
+        setLabels(supervisorLabel,0,0);
+
+        nameButton = new JCheckBox("Name");
+        setBox(nameButton, 1,0);
+        nameButton.setSelected(true);
+
+        emailButton = new JCheckBox("Email");
+        setBox(emailButton, 2,0);
+        emailButton.setSelected(true);
+
+        phoneButton = new JCheckBox("Phone#");
+        setBox(phoneButton, 3,0);
+        phoneButton.setSelected(true);
+
+        searchButton = new JButton("Search");
+        setBtn(searchButton,4,0);
 
         // ALL VOLUNTEERS WHO HAVE DONE ALL SHIFT TYPES
+        /*
         setLabels(allShiftsVolunteers,0,2);
         setBtn(get,1,2);
-
+        */
         /*
         // MIN ATTEND EVENTS PER DAY
         setLabels(minAttendEvents,0,3);
@@ -60,28 +92,44 @@ public class EmployeeTool extends JPanel{
         setLabels(maxAttendEvents,0,4);
         setBtn(lookup2,1,4);
         */
-
+        handleSearch();
     }
 
     // HANDLE SUPERVISOR INFO SEARCH
     private void handleSearch(){
-        search.addActionListener(new ActionListener() {
+        searchButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                String searchFieldValue = searchField.getText();
-                List<String> foi = new ArrayList<String>(Arrays.asList(searchFieldValue.split(",")));
-                Employee cur = (Employee) FreeGeekApp.currentUser;
-                try {
-                    //added cast anita
-                    List<String> result = (List<String>) cur.superviseInfo(foi);
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
+            public void actionPerformed(ActionEvent event) {
+                List<String> inputList = new ArrayList<String>();
+                if (nameButton.isSelected()){
+                    inputList.add("FIRSTNAME");
+                    inputList.add("LASTNAME");
                 }
-                // DO SOMETHING TO DISPLAY THE RESULT
+                if (emailButton.isSelected()) {
+                    inputList.add("EMAIL");
+                }
+                if (phoneButton.isSelected()) {
+                    inputList.add("PHONE");
+                }
+                if (inputList.isEmpty()){
+                    return;
+                }
+                else{
+                    Employee employeeUser = (Employee) FreeGeekApp.currentUser;
+                    ResultSet rs = null;
+                    try {
+                        rs = employeeUser.superviseInfo(inputList);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                    ResultTable rt = new ResultTable(rs);
+                    scroll= rt.getScrollPane();
+                    resultTable = rt.getResultTable();
+                }
             }
         });
     }
-
+    /*
     // HANDLE EXPERIENCED VOLUNTEER GET
     private void handleGet(){
         get.addActionListener(new ActionListener() {
@@ -136,13 +184,13 @@ public class EmployeeTool extends JPanel{
     private void setLabels(JLabel label, int x, int y){
         label.setFont(new Font("Serif",Font.PLAIN,20));
         label.setHorizontalTextPosition(SwingConstants.RIGHT);
-        /*c.gridx = x;
+        c.gridx = x;
         c.gridy = y;
         c.gridheight=1;
         c.gridwidth =1;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(20,10,20,10);
-        add(label, c);*/
+        add(label, c);
     }
 
     private void setFields(JTextField field, int x, int y){/*
@@ -160,7 +208,7 @@ public class EmployeeTool extends JPanel{
         btn.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension d = new Dimension(200,30);
         btn.setPreferredSize(d);
-        /*
+
         c.gridx = x;
         c.gridy = y;
         c.fill = GridBagConstraints.NONE;
@@ -168,7 +216,22 @@ public class EmployeeTool extends JPanel{
         c.gridheight = 1;
         c.anchor = GridBagConstraints.EAST;
         new Insets(20,10,20,10);
-        add(btn,c);*/
+        add(btn,c);
+    }
+
+    private void setBox(JCheckBox btn, int x, int y){
+        btn.setFont(new Font("Serif", Font.PLAIN, 20));
+        Dimension d = new Dimension(200,30);
+        btn.setPreferredSize(d);
+
+        c.gridx = x;
+        c.gridy = y;
+        c.fill = GridBagConstraints.NONE;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.anchor = GridBagConstraints.EAST;
+        new Insets(20,10,20,10);
+        add(btn,c);
     }
 
 }
