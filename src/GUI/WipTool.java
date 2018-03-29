@@ -18,6 +18,7 @@ import java.sql.SQLException;
 
 public class WipTool extends JPanel{
 
+    // ALL VOLUNTEERS WHO HAVE DONE ALL DIFFERENT TYPES OF SHIFTS !!!!!!
     JScrollPane scroll;
     JTable resultTable;
     JLabel volunteerLabel = new JLabel("Experienced Volunteers");
