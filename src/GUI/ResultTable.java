@@ -25,7 +25,11 @@ public class ResultTable {
 
 
     private void setResultTable(){
-        resultTable = new JTable();
+        resultTable = new JTable(){
+            public boolean isCellEditable(int row,int column){
+                return false;
+            }
+        };
         resultTable.setFont(new Font("Serif",Font.PLAIN,20));
         resultTable.setVisible(true);
         resultTable.setModel(DbUtils.resultSetToTableModel(rs));

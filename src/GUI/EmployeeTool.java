@@ -134,16 +134,16 @@ public class EmployeeTool extends JPanel{
     private void setLabels(JLabel label, int x, int y){
         label.setFont(new Font("Serif",Font.PLAIN,20));
         label.setHorizontalTextPosition(SwingConstants.RIGHT);
-        c.gridx = x;
+        /*c.gridx = x;
         c.gridy = y;
         c.gridheight=1;
         c.gridwidth =1;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(20,10,20,10);
-        add(label, c);
+        add(label, c);*/
     }
 
-    private void setFields(JTextField field, int x, int y){
+    private void setFields(JTextField field, int x, int y){/*
         field.setFont(new Font("Serif", Font.PLAIN,20));
         c.gridx = x;
         c.gridy = y;
@@ -151,13 +151,14 @@ public class EmployeeTool extends JPanel{
         c.gridwidth=1;
         c.fill = GridBagConstraints.NONE;
         c.insets = new Insets(20,10,20,100);
-        add(field, c);
+        add(field, c);*/
     }
 
     private void setBtn(JButton btn, int x, int y){
         btn.setFont(new Font("Serif", Font.PLAIN, 20));
         Dimension d = new Dimension(200,30);
         btn.setPreferredSize(d);
+        /*
         c.gridx = x;
         c.gridy = y;
         c.fill = GridBagConstraints.NONE;
@@ -165,7 +166,7 @@ public class EmployeeTool extends JPanel{
         c.gridheight = 1;
         c.anchor = GridBagConstraints.EAST;
         new Insets(20,10,20,10);
-        add(btn,c);
+        add(btn,c);*/
     }
 
 }
