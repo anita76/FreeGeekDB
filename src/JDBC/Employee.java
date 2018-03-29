@@ -64,33 +64,15 @@ public class Employee extends GuestUser {
 
     //5    query checked
     public ResultSet superviseInfo(List<String> wantedInfo) throws SQLException {
-       // List<List> allData = new ArrayList<List>(); // infoList 1, infoList 2, infoList 3
-       // List<String> ans = new ArrayList<String>();
         String query = "";
-        for(String info: wantedInfo){ //Each info is a list
-            //List<String> outData = new ArrayList<String>();
+        for(String info: wantedInfo){
 
             info = info.toUpperCase();
             if (info.equals("ID")||info.equals("FULLTIME")||info.equals("SUPERVISORID")){
                 query += " supervisee."+ info +", ";
             }
             else query += " "+info +", ";
-            //System.out.printf(query);     //test only
-            //System.out.printf("\n");
-            //ResultSet rs = jdbcDriver.executeDataQuery(query);
-            /*while (rs.next()){
-                outData.add(rs.getString(1));
-            }
-            allData.add(outData);*/
         }
-        /*for(int i = 0; i < allData.get(0).size(); i++){ //get pairs of info
-            String outInfo = "";
-            for(List<String> s: allData){
-                outInfo += " "+ s.get(i);
-            }
-            ans.add(outInfo);
-        }
-        return ans;*/
         query = query.substring(0, query.length()-2);
         ResultSet rs = jdbcDriver.executeDataQuery("SELECT "+ query + " FROM Employees e, Employees supervisee, users u WHERE e.ID = "+id+" AND supervisee.id = u.ID AND e.id = supervisee.supervisorid");
         return rs;

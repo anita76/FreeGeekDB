@@ -3,6 +3,7 @@ package tests;
 import JDBC.Employee;
 import JDBC.GuestUser;
 import JDBC.JDBCDriver;
+import JDBC.Volunteer;
 import javafx.util.Pair;
 
 import java.sql.ResultSet;
@@ -24,11 +25,8 @@ public class JDBCDriverTest {
 
     @org.junit.Test
     public void getInstance() throws SQLException {
-        Employee e = new Employee(1);
-        List<Pair<String, Integer>> rs = e.leastPopularEvent();
-        for(Pair<String, Integer> cur:rs){
-            System.out.println(cur.getValue());
-        }
+        Volunteer e = new Volunteer(30);
+        System.out.println(e.getVolunteerHr());
 
     }
 

@@ -17,16 +17,6 @@ import java.util.List;
 
 public class EmployeeTool extends JPanel{
 
-    // SUPERVISOR INFO SEARCH
-    /*
-    private JButton search = new JButton("Search for info");
-    private JLabel supervisorInfoLabel = new JLabel("Which Supervisor Info:");
-    private JTextField searchField = new JTextField(25);
-
-    // ALL VOLUNTEERS WHO HAVE DONE ALL SHIFT TYPES
-    private JButton get = new JButton("Get Volunteers");
-    private JLabel allShiftsVolunteers = new JLabel("Experienced Volunteers:");
-    */
     private GridBagConstraints c = new GridBagConstraints();
 
     JScrollPane scroll;
@@ -39,16 +29,6 @@ public class EmployeeTool extends JPanel{
     JButton searchButton;
     EmployeeTool em = this;
 
-    /*
-    // MIN ATTEND EVNETS PER DAY
-    private JButton lookup = new JButton("Look It Up");
-    private JLabel minAttendEvents = new JLabel("Daily Minimum Attendance");
-
-    // MAX ATTEND EVNETS PER DAY
-    private JButton lookup2 = new JButton("Look It Up");
-    private JLabel maxAttendEvents = new JLabel("Daily Maximum Attendance");
-    */
-    
     public EmployeeTool(){
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
         setBackground(new Color(199,210,208));
@@ -57,7 +37,7 @@ public class EmployeeTool extends JPanel{
 
         // UI ==============================
         // SUPERVISOR INFO SEARCH
-        supervisorLabel = new JLabel("MySupervisor's");
+        supervisorLabel = new JLabel("MySupervisee's");
         setLabels(supervisorLabel,0,0);
 
         nameButton = new JCheckBox("Name");
@@ -74,18 +54,6 @@ public class EmployeeTool extends JPanel{
 
         searchButton = new JButton("Search");
         setBtn(searchButton,4,0);
-
-        // ALL VOLUNTEERS WHO HAVE DONE ALL SHIFT TYPES
-
-        /*
-        // MIN ATTEND EVENTS PER DAY
-        setLabels(minAttendEvents,0,3);
-        setBtn(lookup,1,3);
-
-        // MAX ATTEND EVENTS PER DAY
-        setLabels(maxAttendEvents,0,4);
-        setBtn(lookup2,1,4);
-        */
         handleSearch();
     }
 
@@ -123,57 +91,6 @@ public class EmployeeTool extends JPanel{
             }
         });
     }
-    /*
-    // HANDLE EXPERIENCED VOLUNTEER GET
-    private void handleGet(){
-        get.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Employee cur = (Employee) FreeGeekApp.currentUser;
-                try {
-                    //added cast anita
-                    List<String> result = (List<String>) cur.allVolunteersDiffVSType();
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-                // DO SOMETHING TO DISPLAY THE RESULT
-            }
-        });
-    }
-
-    /*
-    // HANDLE MIN ATTENDANCE FOR SPEICAL EVENTS
-    private void handleMinAttend(){
-        lookup.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Employee cur = (Employee) FreeGeekApp.currentUser;
-                try {
-                    List<Pair<String, Integer>> result = cur.minAttend();
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-                // DO SOMETHING TO DISPLY THE RESULT;
-            }
-        });
-    }
-
-    // HANDLE MIN ATTENDANCE FOR SPEICAL EVENTS
-    private void handleMaxAttend(){
-        lookup2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Employee cur = (Employee) FreeGeekApp.currentUser;
-                try {
-                    List<Pair<String, Integer>> result = cur.maxAttend();
-                } catch (SQLException e1) {
-                    e1.printStackTrace();
-                }
-                // DO SOMETHING TO DISPLY THE RESULT;
-            }
-        });
-    }
-    */
 
     private void setLabels(JLabel label, int x, int y){
         label.setFont(new Font("Serif",Font.PLAIN,20));
@@ -185,17 +102,6 @@ public class EmployeeTool extends JPanel{
         c.fill = GridBagConstraints.HORIZONTAL;
         c.insets = new Insets(20,10,20,10);
         add(label, c);
-    }
-
-    private void setFields(JTextField field, int x, int y){/*
-        field.setFont(new Font("Serif", Font.PLAIN,20));
-        c.gridx = x;
-        c.gridy = y;
-        c.gridheight=1;
-        c.gridwidth=1;
-        c.fill = GridBagConstraints.NONE;
-        c.insets = new Insets(20,10,20,100);
-        add(field, c);*/
     }
 
     private void setBtn(JButton btn, int x, int y){

@@ -35,7 +35,7 @@ public class ResultTable {
         resultTable.setModel(DbUtils.resultSetToTableModel(rs));
         resultTable.setRowHeight(30);
         int totalWidth = setTableWidth();
-        scroll = new JScrollPane(resultTable,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scroll = new JScrollPane(resultTable,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scroll.setPreferredSize(new Dimension(totalWidth,200));
     }
 
@@ -83,6 +83,6 @@ public class ResultTable {
             tableColumn.setPreferredWidth( preferredWidth+10);
             totalWidth = totalWidth+10+preferredWidth;
         }
-        return totalWidth;
+        return totalWidth+18;
     }
 }

@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class JDBCDriver {
     private static JDBCDriver jdbcDriver = new JDBCDriver();
-    private static Connection con;
+    public static Connection con;
     private static Statement stmt;
 
     public static JDBCDriver getInstance() {
@@ -76,4 +76,6 @@ public class JDBCDriver {
             return null;
         }
     }
+
+
 }
