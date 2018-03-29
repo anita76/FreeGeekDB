@@ -4,6 +4,7 @@ package GUI;
 import JDBC.Employee;
 
 import definitions.ConstantValues;
+import javafx.util.Pair;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +28,7 @@ public class EmployeeTool extends JPanel{
     JCheckBox emailButton;
     JCheckBox phoneButton;
     JButton searchButton;
+    private JTextArea resultArea = new JTextArea();
     EmployeeTool em = this;
 
     public EmployeeTool(){
@@ -34,6 +36,16 @@ public class EmployeeTool extends JPanel{
         setBackground(new Color(199,210,208));
         setLayout(new GridBagLayout());
         setVisible(true);
+        resultArea.setFont(new Font("Serif",Font.PLAIN,20));
+        resultArea.setEditable(false);
+
+        c.gridx = 0;
+        c.gridy = 1;
+        c.gridwidth = 2;
+        c.gridheight=2;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(20,10,20,10);
+        this.add(resultArea,c);
 
         // UI ==============================
         // SUPERVISOR INFO SEARCH
@@ -81,8 +93,22 @@ public class EmployeeTool extends JPanel{
                     ResultSet rs = null;
                     try {
                         rs = employeeUser.superviseInfo(inputList);
-                        resultPopUpPage showResults = new resultPopUpPage(rs,"Supervisee Information Query Results");
-                        FreeGeekApp.windowFrame.add(showResults);
+                        /*while (rs.next()){
+                            for(int i = 0; i < inputList.size(); i++){
+                                System.out.printf(inputList.get(i)+": ");
+                                System.out.printf(rs.getString(i+1)+"\n");
+                            }
+                        }*/
+                        String out = "";
+                        while(rs.next()){
+                            for(int i = 0; i < inputList.size(); i++){
+                                out +=inputList.get(i)+": ";
+                                out += rs.getString(i+1)+"\n";
+                            }
+                            resultArea.setText(out);
+                        }
+                        //resultPopUpPage showResults = new resultPopUpPage(rs,"Supervisee Information Query Results");
+                        //FreeGeekApp.windowFrame.add(showResults);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
