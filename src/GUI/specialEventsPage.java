@@ -31,7 +31,7 @@ public class specialEventsPage extends JPanel {
         };
 
         JDBCDriver jdbcDriver = JDBCDriver.getInstance();
-        ResultSet rs = jdbcDriver.executeDataQuery("select * from specialEvents");
+        ResultSet rs = jdbcDriver.executeDataQuery("select TO_CHAR(eventDATE, 'YYYY-MM-DD'), name, entranceFee, startTIME, endTIME, capacity from specialEvents");
         ResultTable rt = new ResultTable(rs);
         scroll= rt.getScrollPane();
         resultTable = rt.getResultTable();
