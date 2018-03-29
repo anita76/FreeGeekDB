@@ -67,18 +67,18 @@ public class ResultTable {
                     break;
                 }
 
-                Object value = tableColumn.getHeaderValue();
-                TableCellRenderer renderer = tableColumn.getHeaderRenderer();
-
-                if (renderer == null)
-                {
-                    renderer = resultTable.getTableHeader().getDefaultRenderer();
-                }
-
-                Component cd = renderer.getTableCellRendererComponent(resultTable, value, false, false, -1, column);
-                int headerSize = cd.getPreferredSize().width;
-                if (headerSize>preferredWidth){preferredWidth=headerSize;}
             }
+            Object value = tableColumn.getHeaderValue();
+            TableCellRenderer renderer = tableColumn.getHeaderRenderer();
+
+            if (renderer == null)
+            {
+                renderer = resultTable.getTableHeader().getDefaultRenderer();
+            }
+
+            Component cd = renderer.getTableCellRendererComponent(resultTable, value, false, false, -1, column);
+            int headerSize = cd.getPreferredSize().width;
+            if (headerSize>preferredWidth){preferredWidth=headerSize;}
 
             tableColumn.setPreferredWidth( preferredWidth+10);
             totalWidth = totalWidth+10+preferredWidth;

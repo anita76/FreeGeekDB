@@ -17,26 +17,44 @@ public class specialEventsPage extends JPanel {
 
     JScrollPane scroll;
     JTable resultTable;
+    JLabel userEventLabel = new JLabel("Your Events");
+    private GridBagConstraints c = new GridBagConstraints();
 
     public specialEventsPage(){
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
         setBackground(new Color(199,210,208));
         setLayout(new GridBagLayout());
         setVisible(true);
+        setUpUserEventDisplay();
+        setUpEventSearchDisplay();
 
+
+
+    }
+
+    private void setUpEventSearchDisplay(){
+        
+    }
+
+
+
+    private void setUpUserEventDisplay(){
         resultTable = new JTable(){
             public boolean isCellEditable(int row,int column){
                 return false;
             }
         };
 
-        JDBCDriver jdbcDriver = JDBCDriver.getInstance();
-        ResultSet rs = jdbcDriver.executeDataQuery("select * from specialEvents");
+        ResultSet rs = FreeGeekApp.currentUser.getUserEvents();
         ResultTable rt = new ResultTable(rs);
         scroll= rt.getScrollPane();
         resultTable = rt.getResultTable();
-        add(scroll);
-
-
+        userEventLabel.setFont(new Font("Serif",Font.PLAIN,40));
+        c.gridx=0;
+        c.gridy=0;
+        add(userEventLabel,c);
+        c.gridx=0;
+        c.gridy=1;
+        add(scroll,c);
     }
 }

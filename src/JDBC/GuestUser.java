@@ -1,5 +1,7 @@
 package JDBC;
 
+import GUI.FreeGeekApp;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -44,8 +46,19 @@ public class GuestUser {
         }
     }
 
+    public ResultSet getUserEvents(){
+        StringBuilder sb = new StringBuilder();
+        String temp = "select se.name, to_char(cast(se.eventDate as date) , 'DD-MM-YYYY') as EventDate, se.startTime, se.endTime, se.entranceFee" +
+                " from specialEvents se, reserveEvents re"+
+                " where se.eventDate = re.eventDate and se.startTime = re.eventStartTime and re.userID =";
+        sb.append(temp);
+        sb.append(FreeGeekApp.currentUser.getId());
+        sb.append(" order by se.eventDate desc");
+        temp = sb.toString();
+        return jdbcDriver.executeDataQuery(temp);
+    }
+
     public String updateAccountInfo(String firstName, String lastName, String email, String phoneNum){
-        JDBCDriver jdbcDriver = JDBCDriver.getInstance();
         String error=checkInputs(firstName,lastName,phoneNum);
         StringBuilder sb = new StringBuilder();
         if(error.equals("constraint satisfied")){
