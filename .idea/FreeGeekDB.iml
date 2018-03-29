@@ -17,5 +17,16 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="com.bluecatcode.junit:junit-4.10-extended:1.0.4" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/rs2xml.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/rs2xml.jar!/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
