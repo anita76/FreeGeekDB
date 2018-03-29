@@ -197,4 +197,8 @@ public class Employee extends GuestUser {
         return ans;
     }*/
 
+     public void DeleteAccount(){
+
+     }
+
 }
