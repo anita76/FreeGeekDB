@@ -15,6 +15,7 @@ public class LoggedInWindow extends JTabbedPane{
     JPanel volunteerTab = new JPanel();
     JPanel volunteering = new JPanel();
     JPanel eventReservationsTab = new JPanel();
+    JPanel wipTool = new WipTool();
 
     LoggedInWindow(){
         add("Main Page",mainPage);
@@ -29,6 +30,7 @@ public class LoggedInWindow extends JTabbedPane{
         if(FreeGeekApp.currentUser instanceof Employee){
             add("Reservations", eventReservationsTab);
             add("Employee Tool",employeeTab);
+            add("wip",wipTool);
         }
     }
 }
