@@ -1,8 +1,8 @@
 package GUI;
 
-import JDBC.GuestUser;
+
 import JDBC.Employee;
-import JDBC.JDBCDriver;
+
 import definitions.ConstantValues;
 
 import javax.swing.*;
@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.List;
-import javafx.util.Pair;
+
 
 public class EmployeeTool extends JPanel{
 
@@ -57,10 +57,6 @@ public class EmployeeTool extends JPanel{
 
         // UI ==============================
         // SUPERVISOR INFO SEARCH
-        /*
-        setLabels(supervisorInfoLabel,0,1);
-        setBtn(search,2,1);
-        */
         supervisorLabel = new JLabel("MySupervisor's");
         setLabels(supervisorLabel,0,0);
 
@@ -80,10 +76,7 @@ public class EmployeeTool extends JPanel{
         setBtn(searchButton,4,0);
 
         // ALL VOLUNTEERS WHO HAVE DONE ALL SHIFT TYPES
-        /*
-        setLabels(allShiftsVolunteers,0,2);
-        setBtn(get,1,2);
-        */
+
         /*
         // MIN ATTEND EVENTS PER DAY
         setLabels(minAttendEvents,0,3);
