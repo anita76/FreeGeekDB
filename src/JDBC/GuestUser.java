@@ -91,6 +91,14 @@ public class GuestUser {
         }
     }
 
+    public void deleteAccount(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("delete from users where id=");
+        sb.append(this.id);
+        String query = sb.toString();
+        jdbcDriver.executeDataUpdate(query);
+    }
+
     private String checkInputs(String firstName, String lastName, String phoneNum){
         if(!(firstName.matches("[a-zA-Z]+"))){
             return "Invalid firstName. Names should only include letters";

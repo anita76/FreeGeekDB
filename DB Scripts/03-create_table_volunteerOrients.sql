@@ -5,6 +5,6 @@ CREATE TABLE volunteerOrients(
 	instructorID number(5) NOT NULL,
 	PRIMARY KEY (orientDate, startTime),
 	FOREIGN KEY (instructorID) REFERENCES employees (ID)
-						ON DELETE CASCADE
+						ON DELETE SET NULL
 );
 

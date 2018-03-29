@@ -13,7 +13,7 @@ public class LoggedInWindow extends JTabbedPane{
     JPanel specialEventSearch = new specialEventsPage();
     JPanel employeeTab = new EmployeeTool();
     JPanel volunteerTab = new JPanel();
-    JPanel volunteerShiftTab = new JPanel();
+    JPanel volunteering = new JPanel();
     JPanel eventReservationsTab = new JPanel();
 
     LoggedInWindow(){
@@ -24,7 +24,7 @@ public class LoggedInWindow extends JTabbedPane{
         setVisible(true);
         if(FreeGeekApp.currentUser instanceof Employee || FreeGeekApp.currentUser instanceof Volunteer){
             add("Volunteer Tool", volunteerTab);
-            add("Volunteer Shifts",volunteerShiftTab);
+            add("Volunteering", volunteering);
         }
         if(FreeGeekApp.currentUser instanceof Employee){
             add("Reservations", eventReservationsTab);
