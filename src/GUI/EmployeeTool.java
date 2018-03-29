@@ -41,10 +41,6 @@ public class EmployeeTool extends JPanel{
         setLayout(new GridBagLayout());
         setVisible(true);
 
-        Employee cur = (Employee) FreeGeekApp.currentUser;
-        //userIDField = new JLabel(Integer.toString(cur.getId()));
-        //setFieldValues();
-
         // UI ==============================
         // SUPERVISOR INFO SEARCH
         setLabels(supervisorInfoLabel,0,1);
