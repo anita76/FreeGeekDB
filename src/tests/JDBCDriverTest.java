@@ -24,8 +24,12 @@ public class JDBCDriverTest {
 
     @org.junit.Test
     public void getInstance() throws SQLException {
-        GuestUser gu = new GuestUser(1);
-        System.out.println(gu.getFirstName());
+        Employee e = new Employee(1);
+        List<String> inputList = new ArrayList<String>();
+        inputList.add("FIRSTNAME");
+        inputList.add("LASTNAME");
+        inputList.add("EMAIL");
+        ResultSet rs = e.superviseInfo(inputList);
         //JDBCDriver jdbcDriver = JDBCDriver.getInstance();
     }
 

@@ -135,7 +135,6 @@ public class LoginWindow extends JPanel{
                 /*try{
                     int id = Integer.parseInt(inputIDValue);
                     GuestUser gu = new GuestUser(id);
-                    //Todo: once volunteer and empolyee are done you have to add the correct user here
                     FreeGeekApp.currentUser=gu;
                     if(gu.isCreated()) {
                         LoggedInWindow loggedInWindow = new LoggedInWindow();

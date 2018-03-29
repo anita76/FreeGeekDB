@@ -72,7 +72,7 @@ public class Employee extends GuestUser {
 
             info = info.toUpperCase();
             if (info.equals("ID")||info.equals("FULLTIME")||info.equals("SUPERVISORID")){
-                query += " supervisor."+ info +", ";
+                query += " supervisee."+ info +", ";
             }
             else query += " "+info +", ";
             //System.out.printf(query);     //test only
@@ -92,7 +92,7 @@ public class Employee extends GuestUser {
         }
         return ans;*/
         query = query.substring(0, query.length()-2);
-        ResultSet rs = jdbcDriver.executeDataQuery("SELECT "+ query + " FROM Employees e, Employees supervisor, users u WHERE e.ID = "+id+" AND e.supervisorid = u.ID AND e.supervisorid = supervisor.id");
+        ResultSet rs = jdbcDriver.executeDataQuery("SELECT "+ query + " FROM Employees e, Employees supervisee, users u WHERE e.ID = "+id+" AND supervisee.id = u.ID AND e.id = supervisee.supervisorid");
         return rs;
     }
 

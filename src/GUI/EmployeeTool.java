@@ -37,6 +37,7 @@ public class EmployeeTool extends JPanel{
     JCheckBox emailButton;
     JCheckBox phoneButton;
     JButton searchButton;
+    EmployeeTool em = this;
 
     /*
     // MIN ATTEND EVNETS PER DAY
@@ -119,12 +120,12 @@ public class EmployeeTool extends JPanel{
                     ResultSet rs = null;
                     try {
                         rs = employeeUser.superviseInfo(inputList);
+                        resultPopUpPage showResults = new resultPopUpPage(rs,"Supervisee Information Query Results");
+                        FreeGeekApp.windowFrame.add(showResults);
                     } catch (SQLException e) {
                         e.printStackTrace();
                     }
-                    ResultTable rt = new ResultTable(rs);
-                    scroll= rt.getScrollPane();
-                    resultTable = rt.getResultTable();
+
                 }
             }
         });

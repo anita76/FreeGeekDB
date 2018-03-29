@@ -12,6 +12,6 @@ public class Volunteer extends GuestUser {
 
     public void getVolunteerHr(){
         StringBuilder sb = new StringBuilder();
-        sb.append("sele")
+        sb.append("sele");
     }
 }

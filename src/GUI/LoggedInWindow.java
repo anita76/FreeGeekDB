@@ -22,7 +22,7 @@ public class LoggedInWindow extends JTabbedPane{
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
         setBackground(new Color(199,210,208));
         setVisible(true);
-        if(FreeGeekApp.currentUser instanceof Employee || FreeGeekApp.currentUser instanceof Volunteer){
+        if(FreeGeekApp.currentUser instanceof Volunteer){
             add("Volunteer Tool", volunteerTab);
             add("Volunteering", volunteering);
         }
