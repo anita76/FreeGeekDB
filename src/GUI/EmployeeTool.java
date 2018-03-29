@@ -72,7 +72,8 @@ public class EmployeeTool extends JPanel{
                 List<String> foi = new ArrayList<String>(Arrays.asList(searchFieldValue.split(",")));
                 Employee cur = (Employee) FreeGeekApp.currentUser;
                 try {
-                    List<String> result = cur.superviseInfo(foi);
+                    //added cast anita
+                    List<String> result = (List<String>) cur.superviseInfo(foi);
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
@@ -88,7 +89,8 @@ public class EmployeeTool extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 Employee cur = (Employee) FreeGeekApp.currentUser;
                 try {
-                    List<String> result = cur.allVolunteersDiffVSType();
+                    //added cast anita
+                    List<String> result = (List<String>) cur.allVolunteersDiffVSType();
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }

@@ -39,11 +39,6 @@ public class specialEventsPage extends JPanel {
 
 
     private void setUpUserEventDisplay(){
-        resultTable = new JTable(){
-            public boolean isCellEditable(int row,int column){
-                return false;
-            }
-        };
 
         ResultSet rs = FreeGeekApp.currentUser.getUserEvents();
         ResultTable rt = new ResultTable(rs);

@@ -63,32 +63,37 @@ public class Employee extends GuestUser {
 
 
     //5    query checked
-    public List<String> superviseInfo(List<String> wantedInfo) throws SQLException {
-        List<List> allData = new ArrayList<List>(); // infoList 1, infoList 2, infoList 3
-        List<String> ans = new ArrayList<String>();
+    public ResultSet superviseInfo(List<String> wantedInfo) throws SQLException {
+       // List<List> allData = new ArrayList<List>(); // infoList 1, infoList 2, infoList 3
+       // List<String> ans = new ArrayList<String>();
+        String query = "";
         for(String info: wantedInfo){ //Each info is a list
-            List<String> outData = new ArrayList<String>();
-            String query = "";
-            if (info == "id"|| info == "iD"|| info =="ID"|| info =="Id"){
-                query = "SELECT distinct e."+ info + " FROM Employees e, users u "+"WHERE e.supervisorID = "+id+" AND e.ID = u.ID";
+            //List<String> outData = new ArrayList<String>();
+
+            info = info.toUpperCase();
+            if (info.equals("ID")||info.equals("FULLTIME")||info.equals("SUPERVISORID")){
+                query += " supervisor."+ info +", ";
             }
-            else query = "SELECT "+ info + " FROM Employees e, users u "+"WHERE e.supervisorID = "+id+" AND e.ID = u.ID";
+            else query += " "+info +", ";
             //System.out.printf(query);     //test only
             //System.out.printf("\n");
-            ResultSet rs = jdbcDriver.executeDataQuery(query);
-            while (rs.next()){
+            //ResultSet rs = jdbcDriver.executeDataQuery(query);
+            /*while (rs.next()){
                 outData.add(rs.getString(1));
             }
-            allData.add(outData);
+            allData.add(outData);*/
         }
-        for(int i = 0; i < allData.get(0).size(); i++){ //get pairs of info
+        /*for(int i = 0; i < allData.get(0).size(); i++){ //get pairs of info
             String outInfo = "";
             for(List<String> s: allData){
                 outInfo += " "+ s.get(i);
             }
             ans.add(outInfo);
         }
-        return ans;
+        return ans;*/
+        query = query.substring(0, query.length()-2);
+        ResultSet rs = jdbcDriver.executeDataQuery("SELECT "+ query + " FROM Employees e, Employees supervisor, users u WHERE e.ID = "+id+" AND e.supervisorid = u.ID AND e.supervisorid = supervisor.id");
+        return rs;
     }
 
     //6
@@ -112,22 +117,22 @@ public class Employee extends GuestUser {
     }*/
 
     //8
-    public List<String> allVolunteersDiffVSType() throws SQLException {
+    public ResultSet allVolunteersDiffVSType() throws SQLException {
         String query = "SELECT distinct u.firstName, u.lastName FROM volunteers v, users u, VOLUNTEERSHIFTS vs WHERE v.ID = u.ID and vs.VOLUNTEERID = v.ID AND NOT EXISTS ((SELECT shiftType FROM volunteerShifts vs1) minus  (SELECT shiftType FROM volunteerShifts vs2 WHERE vs2.volunteerID = v.ID))";
         ResultSet rs = jdbcDriver.executeDataQuery(query);
-        List<String> ans = new ArrayList<String>();
+        /*List<String> ans = new ArrayList<String>();
         while (rs.next()){
             ans.add(rs.getString(1)+ " " + rs.getString(2));
-        }
-        return ans;
+        }*/
+        return rs;
     }
 
     //9   find min attend events per day instead of year
-    public List<Pair<String, Integer>> minAttend() throws SQLException {
-        List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
-        String query = "SELECT se.name, COUNT(*) FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate";
+    public ResultSet minAttend() throws SQLException {
+        //List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
+        String query = "SELECT sename, MIN(count) FROM (SELECT se.name AS sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
         ResultSet rs = jdbcDriver.executeDataQuery(query);
-        while (rs.next()){
+       /* while (rs.next()){
             ans.add(new Pair<String, Integer>(rs.getString(1), rs.getInt(2)));
         }
         List<Pair<String, Integer>> out = new ArrayList<Pair<String, Integer>>();
@@ -137,15 +142,15 @@ public class Employee extends GuestUser {
                 if(p.getValue()>q.getValue()) all = 0;
             }
             if(all ==1) out.add(p);
-        }
-        return out;
+        }*/
+        return rs;
     }
 
-    public List<Pair<String, Integer>> maxAttend() throws SQLException {
-        List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
-        String query = "SELECT se.name, COUNT(*) FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate";
+    public ResultSet maxAttend() throws SQLException {
+        //List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
+        String query = "SELECT sename, MAX(count) FROM (SELECT se.name AS sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
         ResultSet rs = jdbcDriver.executeDataQuery(query);
-        while (rs.next()){
+        /*while (rs.next()){
             ans.add(new Pair<String, Integer>(rs.getString(1), rs.getInt(2)));
         }
         List<Pair<String, Integer>> out = new ArrayList<Pair<String, Integer>>();
@@ -155,36 +160,28 @@ public class Employee extends GuestUser {
                 if(p.getValue()<q.getValue()) all = 0;
             }
             if(all ==1) out.add(p);
-        }
-        return out;
+        }*/
+        return rs;
     }
 
-    public List<Pair<String, Integer>> averageAttend() throws SQLException {
-        List<Pair<String, Integer>> ans = new ArrayList<Pair<String, Integer>>();
+    public ResultSet averageAttend() throws SQLException {
         String aggregation = "SELECT sename, AVG(count) FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
         ResultSet rs = jdbcDriver.executeDataQuery(aggregation);
-        while (rs.next()){
-            ans.add(new Pair<String, Integer>(rs.getString(1), rs.getInt(2)));
-        }
-        return ans;
+        return rs;
     }
 
-    public int leastPopularEvent() throws SQLException {
-        String aggregation = "SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
+    public ResultSet leastPopularEvent() throws SQLException {
+        //String aggregation = "SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
         String nested = "SELECT MIN(avg) AS min FROM (SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename)";
         ResultSet rs = jdbcDriver.executeDataQuery(nested);
-        int ans = 0;
-        while (rs.next()) ans = rs.getInt(1);
-        return ans;
+        return rs;
     }
 
-    public int mostPopularEvent() throws SQLException {
-        String aggregation = "SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
+    public ResultSet mostPopularEvent() throws SQLException {
+        //String aggregation = "SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename";
         String nested = "SELECT MAX(avg) AS min FROM (SELECT sename, AVG(count) AS avg FROM (SELECT se.name As sename, COUNT(*) AS count FROM SpecialEvents se, ReserveEvents re WHERE se.eventDate = re.eventDate AND se.startTIME = re.eventStartTIME GROUP BY se.name, se.eventDate) GROUP BY sename)";
         ResultSet rs = jdbcDriver.executeDataQuery(nested);
-        int ans = 0;
-        while (rs.next()) ans = rs.getInt(1);
-        return ans;
+        return rs;
     }
 
     //10
@@ -200,5 +197,9 @@ public class Employee extends GuestUser {
         }
         return ans;
     }*/
+    public void DeleteEmployeeAccount(){
+        String deletionInDB = "delete from employee where ID = "+id;
+        jdbcDriver.executeDataQuery(deletionInDB);
+    }
 
 }
