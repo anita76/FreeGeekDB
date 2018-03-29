@@ -14,9 +14,9 @@ public class JDBCDriver {
     // connect to database
 
     private JDBCDriver() {
-        String username = "ora_o2t0b";//set to your oracle username (ora_a1b7c)
-        String password = "a23586150";//set to your oracle password (a11131353)
-        String url = "jdbc:oracle:thin:@localhost:61565:ug";
+        String username = "ora_l1m8";//set to your oracle username (ora_a1b7c)
+        String password = "a35183128";//set to your oracle password (a11131353)
+        String url = "jdbc:oracle:thin:@localhost:61343:ug";
 
         try {
             // Load the Oracle JDBC driver
