@@ -9,4 +9,9 @@ public class Volunteer extends GuestUser {
     public Volunteer(int ID){
         super(ID);
     }
+
+    public void getVolunteerHr(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("sele")
+    }
 }
