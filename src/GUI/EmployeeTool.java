@@ -25,7 +25,7 @@ public class EmployeeTool extends JPanel{
     private JButton get = new JButton("Get Volunteers");
     private JLabel allShiftsVolunteers = new JLabel("Experienced Volunteers:");
 
-
+    /*
     // MIN ATTEND EVNETS PER DAY
     private JButton lookup = new JButton("Look It Up");
     private JLabel minAttendEvents = new JLabel("Daily Minimum Attendance");
@@ -33,24 +33,8 @@ public class EmployeeTool extends JPanel{
     // MAX ATTEND EVNETS PER DAY
     private JButton lookup2 = new JButton("Look It Up");
     private JLabel maxAttendEvents = new JLabel("Daily Maximum Attendance");
-
-    private JButton save = new JButton("Save");
-    private JButton cancel = new JButton("Cancel");
-    private JButton logout = new JButton("Log Out");
-    private JButton deleteAcnt = new JButton("Delete Account");
-
-    private JLabel supervisorInfo = new JLabel("Supervisor Info:");
-    private JLabel firstNameLabel = new JLabel("First Name:");
-    private JLabel lastNameLabel = new JLabel("Last Name:");
-    private JLabel emailLabel = new JLabel("E-mail:");
-    private JLabel phoneNumLabel = new JLabel("Phone Number:");
-    private GridBagConstraints c = new GridBagConstraints();
-    private JTextField firstNameField = new JTextField(25);
-    private JTextField lastNameField = new JTextField(25);
-    private JTextField emailField = new JTextField(25);
-    private JTextField phoneNumField = new JTextField(25);
-
-
+    */
+    
     public EmployeeTool(){
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
         setBackground(new Color(199,210,208));
@@ -71,6 +55,7 @@ public class EmployeeTool extends JPanel{
         setLabels(allShiftsVolunteers,0,2);
         setBtn(get,1,2);
 
+        /*
         // MIN ATTEND EVENTS PER DAY
         setLabels(minAttendEvents,0,3);
         setBtn(lookup,1,3);
@@ -78,27 +63,8 @@ public class EmployeeTool extends JPanel{
         // MAX ATTEND EVENTS PER DAY
         setLabels(maxAttendEvents,0,4);
         setBtn(lookup2,1,4);
-
-        /*
-        setLabels(firstNameLabel,0,1);
-        setLabels(lastNameLabel,0,2);
-        setLabels(emailLabel,0,3);
-        setLabels(userIDLabel,0,0);
-        setLabels(phoneNumLabel,0,4);
-        setIDField();
-        setFields(firstNameField,1,1);
-        setFields(lastNameField,1,2);
-        setFields(emailField,1,3);
-        setFields(phoneNumField,1,4);
-        setBtn(save,1,5);
-        setBtn(cancel,0,5);
-        setBtn(logout,0,6);
-        setBtn(deleteAcnt,1,6);
-        handleCancel();
-        handleSave();
-        handleLogout();
-        handleDeleteAccount();
         */
+
     }
 
     // HANDLE SUPERVISOR INFO SEARCH
