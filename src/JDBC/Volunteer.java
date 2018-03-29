@@ -17,8 +17,7 @@ public class Volunteer extends GuestUser {
         super(ID);
     }
 
-    public void getFullSpots(String from, String to)
-    {
+    public void getFullSpots(String from, String to) {
 
     }
     public int getVolunteerHr() {
