@@ -167,10 +167,15 @@ public class MainPage extends JPanel{
     }
 
     private void handleDeleteAccount(){
-        logout.addActionListener(new ActionListener() {
+        deleteAcnt.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO
+                FreeGeekApp.currentUser.deleteAccount();
+                FreeGeekApp.loginWindow.setEnabled(true);
+                FreeGeekApp.loginWindow.setVisible(true);
+                FreeGeekApp.loggedInWindow.setEnabled(false);
+                FreeGeekApp.loggedInWindow.setVisible(false);
+
             }
         });
     }

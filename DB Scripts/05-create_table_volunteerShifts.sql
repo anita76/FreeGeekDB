@@ -9,7 +9,7 @@ create table volunteerShifts(
     instructEmpID number(5),
     primary key(station, shiftDate, morningShift, shiftType),
     foreign key(volunteerID) references volunteers(id)
-                            on delete cascade,
+                            on delete set null,
     foreign key(instructEmpID) references employees(id)
                             on delete set null
 );
