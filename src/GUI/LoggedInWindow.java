@@ -11,7 +11,7 @@ public class LoggedInWindow extends JTabbedPane{
 
     JPanel mainPage= new MainPage();
     JPanel specialEventSearch = new specialEventsPage();
-    JPanel employeeTab = new JPanel();
+    JPanel employeeTab = new EmployeeTool();
     JPanel volunteerTab = new JPanel();
     JPanel volunteering = new JPanel();
     JPanel eventReservationsTab = new JPanel();
