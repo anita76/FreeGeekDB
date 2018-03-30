@@ -1,4 +1,18 @@
 insert into specialEvents
+values ('2013-06-30', 
+		'Mid Year Party', 30, 
+		'18:00:00', 
+		'22:00:00', 
+		50);
+
+insert into specialEvents
+values ('2013-12-03', 
+		'Winter Party', 20, 
+		'18:00:00', 
+		'22:00:00', 
+		50);
+
+insert into specialEvents
 values ('2014-02-03', 
 		'Spring Party', 2.5,
 		'18:00:00', 
