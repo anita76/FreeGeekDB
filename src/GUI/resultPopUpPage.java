@@ -38,6 +38,9 @@ public class resultPopUpPage extends JPanel{
         c.gridx=0;
         add(exit,c);
         setVisible(true);
+        if(FreeGeekApp.shiftQuery){
+            setUpForShiftQuery();
+        }
         exit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -46,6 +49,10 @@ public class resultPopUpPage extends JPanel{
                 FreeGeekApp.windowFrame.remove(cur);
             }
         });
+    }
+
+    private void setUpForShiftQuery(){
+        
     }
 
 }

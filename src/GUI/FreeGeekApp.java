@@ -12,6 +12,7 @@ public class FreeGeekApp {
     public static LoginWindow loginWindow = new LoginWindow();
     public static GuestUser currentUser = null;
     public static LoggedInWindow loggedInWindow = null;
+    public static boolean shiftQuery = false;
 
     public FreeGeekApp(){
         windowFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

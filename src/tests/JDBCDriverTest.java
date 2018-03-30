@@ -26,7 +26,11 @@ public class JDBCDriverTest {
     @org.junit.Test
     public void getInstance() throws SQLException {
         Volunteer e = new Volunteer(30);
-        System.out.println(e.getVolunteerHr());
+        ResultSet rs = e.getFullSpots("2018-08-09","2018-9-9");
+        while(rs.next()){
+            System.out.println(rs.getString("shiftType"));
+            System.out.println(rs.getDate("shiftDate"));
+        }
 
     }
 
