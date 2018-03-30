@@ -1,0 +1,73 @@
+--Description--
+
+	This project is a management system made for FreeGeek - a local nonprofit community organization where one of of teammates is working at. The project contains a demo database and an application with a user interface. We can have different user groups using the system: employees, Functionalities include:  user signup, account info management, volunteer signing for shifts, employee checking volunteer info, managing event reservations, etc. All these functionalities are achieved. All rights of this project are reserved by all 4 original contributors(in alphabetical order): Anita Mhn, Joon Hyung Kim, Zehao Zhu, Zhe Jiang. 
+
+
+
+
+--Schemas And Functional Dependencies--
+
+	Our final schema is different from the original one, because the original schema was too complicated with too many tables, and our TA suggested to delete some of the schemas.  
+
+	The schemas we have now are:
+
+
+	**Table**
+	User [ ID: number, firstName: VARCHAR2(30), lastName VARCHAR2(30), email: VARCHAR2(50), phone#: number, membershipStartData: Date]
+
+	FDs: ID -> firstName, lastName, email, phone#, membershipStartDate  (ie. ID is primary key)
+		 email -> ID    (ie. email is a candidate key) 
+	Candidate keys: ID, email
+	Constraints: email is UNIQUE
+	Meaning: Given the user's ID, we can retrieve his/her full name, email. phone number and see since when he had the membership.
+			 Also, given the email of the user, we can get that specific user and retrieve his/her ID. This/her can be used as a lost and found functionality. 
+
+
+	**Table**
+	Employee[ ID: number, fullTime: VARCHAR2(3), supervisorID: number]
+
+	FDs: ID -> fullTime, supervisorID (ie. ID is a primary key) 
+	Candidate keys: ID
+	Meaning: Given an employee's ID, we can retrieve whether he is fulltime and his/her supervisor's ID. 
+
+
+	**Table**
+	SpecialEvent [date:Date, name:VARCHAR2(30), entranceFee:number, startTime: Date, endTime: Date, capacity: number]
+
+	FDs: (date, startTime) -> name, entranceFee, endTime, capacity 
+	Candidate keys: (date, startTime)
+	Meaning: Given the date and start time of a special event, we can get that specific event and retrieve its title name, entrance fee, end time and capacity.
+
+
+	**Table**
+	ReserveEvent [ eventDate: Date, eventStartTime: Date, purchaseDate: Date, userID: number]
+
+	FDs: (eventDate, eventStartTime, userID) -> purchaseDate
+	Candidate Key: (eventDate, eventStartTIME, userID)
+	Meaning: Given the event date, event starting time and a user's ID, we can get that specific reservation and retrieve the purchase date of that reservation.
+
+
+	**Table**
+	VolunteerOrientation_TaughtBy [date:Date, startTIME:Time, endTime: Date, instructorID:number]
+
+	FDs: (date, startTime) -> endTime, instructorID 
+	Candidate Keys: (date, startTIME)
+	Constraint : instructorID NOT NULL
+	Meaning: Given the date and starting time of an orientation, we can get that epecific orientation and retrieve the end time and instructor's ID for that orientation.
+
+
+	**Table**
+	VolunteerShift [ station:number, shiftDate:Date, morningShift:VARCHAR2(3), shiftType:VARCHAR2(30), volunteerID:number, signupDate: Date, trainingReq: VARCHAR2(3), instructEmpID: number]
+
+	FDs: station, shiftDate, morningShift, shiftType -> volunteerID, instructEmpID, signupDate, trainingReq (ie. the attributes on the left side are the key)
+	Candidate key: (station, shiftDate, morningShift, shiftType)
+	Meaning: Given the station number, the shift date, the shift period in a day and the shift type, we can find a specific volunteer shift and retrieve the volunteer's ID, the instructor's ID, the signu date and the training requirements.
+
+
+	**Table**
+	Volunteer_Attends [ID_Volunteer: number, orientSignUpDate: Date, points: number, orientationdate:Date, orientationStartTime:Date]
+
+	FDs: ID_Volunteer -> volunteerHours, orientationStartTime, orientationDate, oreintSignUpDate
+	Candidate Key: ID_Volunteer
+	Constraint: orientationDate and orientationStartTime NOT NULL;
+	Meaning: Given the ID of a volunteer, we can get his/her attendency info and retrieve the volunteering total hour, his/her  orientation start time, his/her orientation date and his/her orientation sign up date.
