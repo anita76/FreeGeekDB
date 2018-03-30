@@ -1,3 +1,4 @@
+--13
 insert into volunteerShifts
 values('1','2016-06-06', 'yes', 'dismantle', '00030', '2016-06-01', 'yes', '00010');
 insert into volunteerShifts
@@ -25,6 +26,7 @@ values('1', '2018-05-06', 'no', 'hard drive install', '00030', '2016-03-10','no'
 insert into volunteerShifts
 values('2', '2018-04-20', 'no', 'cleaning', '00030', '2018-02-22','no', null);
 
+--11
 insert into volunteerShifts
 values('1','2015-07-16', 'no', 'dismantle', '00031', '2015-07-01', 'yes', '00010');
 insert into volunteerShifts
@@ -48,20 +50,17 @@ values('2','2018-05-04', 'yes', 'hard drive install', '00031', '2018-01-01', 'no
 insert into volunteerShifts
 values('2','2018-04-04', 'yes', 'dismantle', '00031', '2018-02-01', 'no', null);
 
+--12
 insert into volunteerShifts
 values('1','2016-07-16', 'no', 'cleaning', '00032', '2016-07-01', 'no', null);
 insert into volunteerShifts
 values('2','2016-12-01', 'no', 'RAM testing', '00032', '2016-11-13', 'yes', '00001');
-insert into volunteerShifts
-values('2','2016-01-07', 'no', 'hard drive install', '00032', '2015-12-01', 'yes', '00009');
 insert into volunteerShifts
 values('2','2016-12-04', 'no', 'RAM testing', '00032', '2016-02-11', 'no', null);
 insert into volunteerShifts
 values('1','2016-10-04', 'yes', 'RAM testing', '00032', '2016-09-01', 'no', null);
 insert into volunteerShifts
 values('2','2017-11-20', 'no', 'cleaning', '00032', '2017-11-01', 'no', null);
-insert into volunteerShifts
-values('2','2017-08-04', 'yes', 'RAM testing', '00032', '2017-05-01', 'no', null);
 insert into volunteerShifts
 values('2','2017-12-10', 'no', 'RAM testing', '00032', '2017-07-01', 'no', null);
 insert into volunteerShifts
@@ -73,6 +72,7 @@ values('2','2018-11-03', 'no', 'dismantle', '00032', '2018-02-01', 'no', null);
 insert into volunteerShifts
 values('1', '2018-09-09', 'yes', 'hard drive install', '00032', '2018-09-01', 'no', null);
 
+--
 insert into volunteerShifts
 values('2','2015-02-03', 'yes', 'cleaning', '00033', '2015-02-01', 'no', null);
 insert into volunteerShifts
@@ -134,8 +134,6 @@ values('1','2015-02-01', 'yes', 'cleaning', '00035', '2015-01-21', 'no', null);
 insert into volunteerShifts
 values('2','2015-03-01', 'no', 'dismantle', '00035', '2015-01-11', 'yes', '00005');
 insert into volunteerShifts
-values('2','2015-04-01', 'yes', 'hard drive install', '00035', '2015-04-01', 'no', null);
-insert into volunteerShifts
 values('1','2015-05-01', 'no', 'cleaning', '00035', '2015-02-21', 'no', null);
 insert into volunteerShifts
 values('1','2017-01-01', 'no', 'cleaning', '00035', '2016-12-25', 'no', null);
@@ -147,8 +145,6 @@ insert into volunteerShifts
 values('1','2017-04-01', 'yes', 'cleaning', '00035', '2017-03-20', 'no', null);
 insert into volunteerShifts
 values('1','2017-05-01', 'no', 'cleaning', '00035', '2017-03-21', 'no', null);
-insert into volunteerShifts
-values('2','2017-06-01', 'no', 'dismantle', '00035', '2017-05-23', 'no', null);
 insert into volunteerShifts
 values('1', '2018-12-01', 'yes', 'hard drive install', '00035', '2018-03-03', 'no',null);
 insert into volunteerShifts
@@ -203,15 +199,7 @@ values('2','2015-10-09', 'no', 'dismantle', '00037', '2015-10-02','no',null);
 insert into volunteerShifts
 values('1','2015-12-19', 'yes', 'RAM testing', '00037', '2015-11-21','yes','00010');
 insert into volunteerShifts
-values('1','2015-11-18', 'yes', 'RAM testing', '00037', '2015-07-11','no',null);
-insert into volunteerShifts
-values('1','2015-12-31', 'yes', 'dismantle', '00037', '2015-12-16','no',null);
-insert into volunteerShifts
 values('1','2015-07-09', 'yes', 'dismantle', '00037', '2015-07-01','yes','00001');
-insert into volunteerShifts
-values('2','2015-10-09', 'no', 'dismantle', '00037', '2015-01-02','no',null);
-insert into volunteerShifts
-values('1','2015-12-19', 'yes', 'dismantle', '00037', '2015-03-21','yes','00010');
 insert into volunteerShifts
 values('1','2015-11-18', 'yes', 'RAM testing', '00037', '2015-02-11','no',null);
 insert into volunteerShifts
