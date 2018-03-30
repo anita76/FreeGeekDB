@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -19,6 +20,12 @@ public class Statistics extends JPanel{
     private GridBagConstraints c = new GridBagConstraints();
     JRadioButton max = new JRadioButton("Most popular",true);
     JRadioButton min = new JRadioButton("Least popular",false);
+
+    // MIN/MAX ATTEND
+    JLabel minLabel;
+    JLabel maxLabel;
+    JButton minButton;
+    JButton maxButton;
 
     public Statistics(){
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
@@ -59,6 +66,62 @@ public class Statistics extends JPanel{
         c.gridwidth = 2;
         this.add(resultArea,c);
         handleEventSearchButton();
+
+        // MIN ATTEND
+        minLabel = new JLabel("Minimum Attendance");
+        minLabel.setFont(new Font("Serif",Font.PLAIN,20));
+        minLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
+        c.gridx = 0;
+        c.gridy = 2;
+        c.gridheight=1;
+        c.gridwidth =1;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(20,10,20,10);
+        add(minLabel, c);
+
+        minButton = new JButton("Look Up Min");
+        minButton.setFont(new Font("Serif", Font.PLAIN, 20));
+        Dimension dmin = new Dimension(200,30);
+        minButton.setPreferredSize(dmin);
+
+        c.gridx = 1;
+        c.gridy = 2;
+        c.fill = GridBagConstraints.NONE;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.anchor = GridBagConstraints.EAST;
+        new Insets(20,10,20,10);
+        add(minButton,c);
+
+        handleMin();
+
+        // MAX ATTEND
+        maxLabel = new JLabel("Maximum Attedance");
+        maxLabel.setFont(new Font("Serif",Font.PLAIN,20));
+        maxLabel.setHorizontalTextPosition(SwingConstants.RIGHT);
+        c.gridx = 0;
+        c.gridy = 3;
+        c.gridheight=1;
+        c.gridwidth =1;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.insets = new Insets(20,10,20,10);
+        add(maxLabel, c);
+
+        maxButton = new JButton("Look Up Max");
+        maxButton.setFont(new Font("Serif", Font.PLAIN, 20));
+        Dimension dmax = new Dimension(200,30);
+        maxButton.setPreferredSize(dmax);
+
+        c.gridx = 1;
+        c.gridy = 3;
+        c.fill = GridBagConstraints.NONE;
+        c.gridwidth = 1;
+        c.gridheight = 1;
+        c.anchor = GridBagConstraints.EAST;
+        new Insets(20,10,20,10);
+        add(maxButton,c);
+
+        handleMax();
     };
 
     private void handleEventSearchButton(){
@@ -95,4 +158,44 @@ public class Statistics extends JPanel{
             }
         });
     }
+
+    private void handleMin(){
+        minButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+
+                Employee employeeUser = (Employee) FreeGeekApp.currentUser;
+                ResultSet rs = null;
+                try {
+                    rs = employeeUser.minAttend();
+                    resultPopUpPage showResults = new resultPopUpPage(rs,"Daily Minimum Attendance");
+                    FreeGeekApp.windowFrame.add(showResults);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+    }
+
+    private void handleMax(){
+        maxButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+
+                Employee employeeUser = (Employee) FreeGeekApp.currentUser;
+                ResultSet rs = null;
+                try {
+                    rs = employeeUser.maxAttend();
+                    resultPopUpPage showResults = new resultPopUpPage(rs,"Daily Maximum Attendance");
+                    FreeGeekApp.windowFrame.add(showResults);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
 }

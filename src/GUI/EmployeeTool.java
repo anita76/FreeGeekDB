@@ -22,12 +22,20 @@ public class EmployeeTool extends JPanel{
     JScrollPane scroll;
     JTable resultTable;
 
+    // SUPERVISEE
     JLabel supervisorLabel;
     JCheckBox nameButton;
     JCheckBox emailButton;
     JCheckBox phoneButton;
     JButton searchButton;
     EmployeeTool em = this;
+
+    // MIN/MAX ATTEND
+    JLabel minLabel;
+    JLabel maxLabel;
+    JButton minButton;
+    JButton maxButton;
+
 
     public EmployeeTool(){
         setSize(ConstantValues.WIDTH,ConstantValues.HEIGHT);
@@ -36,7 +44,7 @@ public class EmployeeTool extends JPanel{
         setVisible(true);
 
         // UI ==============================
-        // SUPERVISOR INFO SEARCH
+        // SUPERVISEE INFO SEARCH
         supervisorLabel = new JLabel("MySupervisee's");
         setLabels(supervisorLabel,0,0);
 
@@ -55,6 +63,22 @@ public class EmployeeTool extends JPanel{
         searchButton = new JButton("Search");
         setBtn(searchButton,4,0);
         handleSearch();
+
+        /* MOVED TO STATISTIC TAB
+        // MIN ATTEND
+        minLabel = new JLabel("Minimum Attendance");
+        setLabels(minLabel, 0,2);
+        minButton = new JButton("Look Up Min");
+        setBtn(minButton,1,2);
+        handleMin();
+
+        // MAX ATTEND
+        maxLabel = new JLabel("Maximum Attedance");
+        setLabels(maxLabel, 0, 4);
+        maxButton = new JButton("Look Up Max");
+        setBtn(maxButton, 1, 4);
+        handleMax();
+        */
     }
 
     // HANDLE SUPERVISOR INFO SEARCH
@@ -91,6 +115,47 @@ public class EmployeeTool extends JPanel{
             }
         });
     }
+    /*
+    private void handleMin(){
+        minButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+
+                Employee employeeUser = (Employee) FreeGeekApp.currentUser;
+                ResultSet rs = null;
+                try {
+                    rs = employeeUser.minAttend();
+                    resultPopUpPage showResults = new resultPopUpPage(rs,"Daily Minimum Attendance");
+                    FreeGeekApp.windowFrame.add(showResults);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+    }
+    */
+    /*
+    private void handleMax(){
+        maxButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+
+                Employee employeeUser = (Employee) FreeGeekApp.currentUser;
+                ResultSet rs = null;
+                try {
+                    rs = employeeUser.maxAttend();
+                    resultPopUpPage showResults = new resultPopUpPage(rs,"Daily Maximum Attendance");
+                    FreeGeekApp.windowFrame.add(showResults);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+    */
 
     private void setLabels(JLabel label, int x, int y){
         label.setFont(new Font("Serif",Font.PLAIN,20));

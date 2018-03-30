@@ -52,7 +52,7 @@ public class resultPopUpPage extends JPanel{
     }
 
     private void setUpForShiftQuery(){
-        
+
     }
 
 }
