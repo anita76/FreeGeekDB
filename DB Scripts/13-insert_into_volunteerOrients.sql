@@ -11,7 +11,7 @@ insert into volunteerOrients
 values('2016-05-02', '11:30:00', '13:30:00', '00005');
 
 insert into volunteerOrients
-values('2016-08-02', '11:30:00', '13:30:00', '00007');
+values('2016-08-01', '11:30:00', '13:30:00', '00007');
 
 insert into volunteerOrients
 values('2016-05-11', '11:30:00', '13:30:00', '00005');
