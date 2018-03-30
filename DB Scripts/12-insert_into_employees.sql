@@ -48,3 +48,11 @@ insert into employees
 values('00024', 'no', '00015');
 insert into employees
 values('00025', 'no', '00015');
+insert into employees
+values('00026', 'no', '00015');
+insert into employees
+values('00027', 'no', '00001');
+insert into employees
+values('00028', 'no', '00001');
+insert into employees
+values('00029', 'no', '00015');
